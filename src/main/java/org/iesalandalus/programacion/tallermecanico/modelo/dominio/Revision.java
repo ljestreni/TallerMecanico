@@ -16,7 +16,7 @@ public class Revision extends Trabajo {
     private float precioMaterial;
 
     public Revision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio) {
-        super(cliente, vehiculo, fechaInicio); // Calling the constructor of the parent class
+        super(cliente, vehiculo, fechaInicio);
         this.horas = 0;
         this.precioMaterial = 0;
     }
@@ -51,10 +51,12 @@ public class Revision extends Trabajo {
 
     @Override
     public String toString() {
-        return String.format("Revisión de %s con %s - Inicio: %s, Fin: %s, Horas: %d, Material: %.2f, Precio Total: %.2f",
-                cliente, vehiculo,
-                fechaInicio.format(FORMATO_FECHA),
-                (fechaFin != null ? fechaFin.format(FORMATO_FECHA) : "No cerrada"),
-                horas);
+        String cadena;
+        if (!estaCerrado()) {
+            cadena = String.format("Revision -> %s - %s (%s - ): %d horas, %.2f en material", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());
+        } else {
+            cadena = String.format("Revision -> %s - %s (%s - %s): %d horas, %.2f en material, %.2f total", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());
+        }
+        return cadena;
     }
 }
