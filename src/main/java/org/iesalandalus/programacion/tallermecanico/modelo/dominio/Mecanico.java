@@ -27,7 +27,7 @@ public class Mecanico extends Trabajo {
         if (precioMaterial <= 0) {
             throw new IllegalArgumentException("El precio del material a añadir debe ser mayor que cero.");
         }
-        if (estaCerrado()) {
+        if (estaCerrada()) {
             throw new TallerMecanicoExcepcion("No se puede añadir precio del material, ya que el trabajo mecanico esta cerrado.");
         }
         this.precioMaterial += precioMaterial;
@@ -35,13 +35,13 @@ public class Mecanico extends Trabajo {
 
     @Override
     public float getPrecioEspecifico () {
-        return (estaCerrado()) ? FACTOR_HORA * getHoras() + FACTOR_PRECIO_MATERIAL * getPrecioMaterial() : 0;
+        return (estaCerrada()) ? FACTOR_HORA * getHoras() + FACTOR_PRECIO_MATERIAL * getPrecioMaterial() : 0;
     }
 
     @Override
     public String toString () {
         String cadena;
-        if (!estaCerrado()) {
+        if (!estaCerrada()) {
             cadena = String.format("Mecanico -> %s - %s (%s - ): %d horas, %.2f en material", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());
         } else {
             cadena = String.format("Mecanico -> %s - %s (%s - %s): %d horas, %.2f en material, %.2f total", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());

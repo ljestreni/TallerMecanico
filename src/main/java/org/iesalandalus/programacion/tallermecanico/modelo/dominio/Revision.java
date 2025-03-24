@@ -52,7 +52,7 @@ public class Revision extends Trabajo {
     @Override
     public String toString() {
         String cadena;
-        if (!estaCerrado()) {
+        if (!estaCerrada()) {
             cadena = String.format("Revision -> %s - %s (%s - ): %d horas, %.2f en material", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());
         } else {
             cadena = String.format("Revision -> %s - %s (%s - %s): %d horas, %.2f en material, %.2f total", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras());
