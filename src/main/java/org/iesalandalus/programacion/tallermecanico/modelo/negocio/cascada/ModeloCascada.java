@@ -1,15 +1,12 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio.cascada;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
+import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class ModeloCascada implements org.iesalandalus.programacion.tallermecanico.modelo.negocio.Modelo {
 
@@ -18,51 +15,55 @@ public class ModeloCascada implements org.iesalandalus.programacion.tallermecani
     private ITrabajos trabajos;
 
     public ModeloCascada(FabricaFuenteDatos fabricaFuenteDatos) {
-        this.clientes = fabricaFuenteDatos.crear().crearClientes();
-        this.vehiculos = fabricaFuenteDatos.crear().crearVehiculos();
-        this.trabajos = fabricaFuenteDatos.crear().crearTrabajos();
+        Objects.requireNonNull(fabricaFuenteDatos, "La factoría de la fuente de datos no puede ser nula.");
+        IFuenteDatos fuenteDatos = fabricaFuenteDatos.crear();
+        clientes = fuenteDatos.crearClientes();
+        vehiculos = fuenteDatos.crearVehiculos();
+        trabajos = fuenteDatos.crearTrabajos();
     }
 
     @Override
     public void comenzar() {
-        System.out.println("El modelo ha comenzado.");
+        System.out.println("Modelo comenzado.");
     }
 
     @Override
     public void terminar() {
-        System.out.println("El modelo ha terminado.");
+        System.out.println("Modelo terminado.");
     }
 
     @Override
-    public void insertar(Cliente cliente) {
-        clientes.insertar(cliente);
-        System.out.println("Cliente insertado.");
+    public void insertar(Cliente cliente) throws TallerMecanicoExcepcion {
+        clientes.insertar(new Cliente(cliente));
     }
 
     @Override
-    public void insertar(Vehiculo vehiculo) {
+    public void insertar(Vehiculo vehiculo) throws TallerMecanicoExcepcion {
         vehiculos.insertar(vehiculo);
-        System.out.println("Vehículo insertado.");
     }
 
     @Override
-    public void insertar(Trabajo trabajo) {
+    public void insertar(Trabajo trabajo) throws TallerMecanicoExcepcion {
+        Cliente cliente = clientes.buscar(trabajo.getCliente());
+        Vehiculo vehiculo = vehiculos.buscar(trabajo.getVehiculo());
+        if (trabajo instanceof Revision) {
+            trabajo = new Revision(cliente, vehiculo, trabajo.getFechaInicio());
+        } else {
+            trabajo = new Mecanico(cliente, vehiculo, trabajo.getFechaInicio());
+        }
         trabajos.insertar(trabajo);
-        System.out.println("Trabajo insertado.");
     }
 
     @Override
     public Cliente buscar(Cliente cliente) {
-        Cliente encontrado = clientes.buscar(cliente);
-        System.out.println("Cliente encontrado.");
-        return encontrado;
+        cliente = Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual.");
+        return new Cliente(cliente);
     }
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        Vehiculo encontrado = vehiculos.buscar(vehiculo);
-        System.out.println("Vehículo encontrado.");
-        return encontrado;
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual.");
+        return vehiculo;
     }
 
     @Override
