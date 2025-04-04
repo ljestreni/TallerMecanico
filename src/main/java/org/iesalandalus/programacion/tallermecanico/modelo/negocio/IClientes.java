@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 
 import java.util.List;
@@ -7,11 +8,11 @@ import java.util.List;
 public interface IClientes {
     List<Cliente> get();
 
-    void insertar(Cliente cliente);
+    void insertar(Cliente cliente) throws TallerMecanicoExcepcion;
 
-    Cliente modificar(Cliente cliente, String nombre, String telefono);
+    Cliente modificar(Cliente cliente, String nombre, String telefono) throws TallerMecanicoExcepcion;
 
     Cliente buscar(Cliente cliente);
 
-    void borrar(Cliente cliente);
+    void borrar(Cliente cliente) throws TallerMecanicoExcepcion;
 }

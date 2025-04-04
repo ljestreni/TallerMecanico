@@ -5,74 +5,81 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Clientes implements IClientes {
 
-    private List<Cliente> coleccionClientes;
+    List<Cliente> coleccionClientes = new ArrayList<>();
 
-    public Clientes() {
+    public Clientes(){
         coleccionClientes = new ArrayList<>();
     }
 
     @Override
     public List<Cliente> get() {
-        List<Cliente> copiaClientes = new ArrayList<>();
-        for (Cliente cliente : coleccionClientes) {
-            copiaClientes.add(new Cliente(cliente));
-        }
-        return Collections.unmodifiableList(copiaClientes);
+        List<Cliente> nuevoCliente;
+        nuevoCliente = coleccionClientes;
+        return coleccionClientes;
     }
 
     @Override
-    public void insertar(Cliente cliente) {
-        if (cliente == null) {
-            throw new NullPointerException("No se puede insertar un cliente nulo.");
-        }
-        if (coleccionClientes.contains(cliente)) {
+    public void insertar(Cliente cliente)throws TallerMecanicoExcepcion{
+        Objects.requireNonNull(cliente, "No se puede insertar un cliente nulo.");
+        if (!coleccionClientes.contains(cliente)){
+                coleccionClientes.add(cliente);
+        }else {
             throw new TallerMecanicoExcepcion("Ya existe un cliente con ese DNI.");
         }
-        coleccionClientes.add(new Cliente(cliente));
     }
 
     @Override
-    public Cliente modificar(Cliente cliente, String nombre, String telefono) {
-        if (cliente == null) {
-            throw new NullPointerException("No se puede modificar un cliente nulo.");
+    public Cliente modificar(Cliente cliente, String nombre, String telefono) throws TallerMecanicoExcepcion{
+        Objects.requireNonNull(cliente, "No se puede modificar un cliente nulo.");
+
+        if (coleccionClientes.contains(cliente)){
+
+            if ((nombre != null) && !nombre.isBlank()){
+                buscar(cliente).setNombre(nombre);
+            }
+
+            if ((telefono != null) && !telefono.isBlank()){
+                buscar(cliente).setTelefono(telefono);
+            }
+
+            return buscar(cliente);
         }
-        Cliente clienteExistente = buscar(cliente);
-        if (clienteExistente == null) {
+
+        if (!coleccionClientes.contains(cliente)){
             throw new TallerMecanicoExcepcion("No existe ningún cliente con ese DNI.");
         }
 
-        if (nombre != null && !nombre.isBlank()) {
-            clienteExistente.setNombre(nombre);
-        }
-        if (telefono != null && !telefono.isBlank()) {
-            clienteExistente.setTelefono(telefono);
-        }
-
-
-        return clienteExistente;
+        return buscar(cliente);
     }
 
     @Override
-    public Cliente buscar(Cliente cliente) {
-        if (cliente == null) {
-            throw new NullPointerException("No se puede buscar un cliente nulo.");
+    public Cliente buscar(Cliente cliente){
+        Objects.requireNonNull(cliente,"No se puede buscar un cliente nulo.");
+        if (coleccionClientes.contains(cliente)){
+            int clientesIndex = coleccionClientes.indexOf(cliente);
+            return coleccionClientes.get(clientesIndex);
+        }else{
+            return null;
         }
-        int index = coleccionClientes.indexOf(cliente);
-        return (index != -1) ? new Cliente(coleccionClientes.get(index)) : null;
     }
 
     @Override
-    public void borrar(Cliente cliente) {
-        if (cliente == null) {
-            throw new NullPointerException("No se puede borrar un cliente nulo.");
-        }
-        if (!coleccionClientes.remove(cliente)) {
+    public void borrar(Cliente cliente)throws TallerMecanicoExcepcion{
+        Objects.requireNonNull(cliente,"No se puede borrar un cliente nulo.");
+        if (coleccionClientes.contains(cliente)){
+            coleccionClientes.remove(cliente);
+        }else {
             throw new TallerMecanicoExcepcion("No existe ningún cliente con ese DNI.");
         }
     }
+
+
+
+
+
 }

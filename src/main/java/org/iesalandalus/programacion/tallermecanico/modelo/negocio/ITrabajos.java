@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
@@ -14,15 +15,15 @@ public interface ITrabajos {
 
     List<Trabajo> get(Vehiculo vehiculo);
 
-    void insertar(Trabajo trabajo);
+    void insertar(Trabajo trabajo) throws TallerMecanicoExcepcion;
 
-    Trabajo anadirHoras(Trabajo trabajo, int horas);
+    Trabajo anadirHoras(Trabajo trabajo, int horas) throws TallerMecanicoExcepcion;
 
-    void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial);
+    Trabajo anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws TallerMecanicoExcepcion;
 
-    Trabajo cerrar(Trabajo trabajo, LocalDate fechaFin);
+    Trabajo cerrar(Trabajo trabajo, LocalDate fechaFin) throws TallerMecanicoExcepcion;
 
     Trabajo buscar(Trabajo trabajo);
 
-    void borrar(Trabajo trabajo);
+    void borrar(Trabajo trabajo) throws TallerMecanicoExcepcion;
 }
