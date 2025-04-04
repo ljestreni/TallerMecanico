@@ -7,11 +7,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VehiculoTest {
-
+	
 	private static final String MARCA = "Renault";
 	private static final String MODELO = "Megane";
 	private static final String MATRICULA = "1111BBB";
-
+	
 	private final Vehiculo vehiculo = new Vehiculo(MARCA, MODELO, MATRICULA);
 
 	@ParameterizedTest(name = "Cuando llamamos al constructor con marca: {0}, modelo: {1}, matrícula: {2} crea correctamente el vehículo")
@@ -29,7 +29,7 @@ class VehiculoTest {
 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Vehiculo(null, MODELO, MATRICULA));
 		assertEquals("La marca no puede ser nula.", npe.getMessage());
 	}
-
+	
 	@ParameterizedTest(name = "Cuando llamamos al constructor con marca no válida: {0} lanza excepción")
 	@CsvSource({"''", "' '", "'   '", "AA-BB", "aa", "aa bb"})
 	void constructorMarcaNoValidaModeloValidoMatrivaValidaLanzaExcepcion(String marca) {
@@ -62,7 +62,7 @@ class VehiculoTest {
 		IllegalArgumentException iae = assertThrows(IllegalArgumentException.class,() -> new Vehiculo(MARCA,MODELO,matricula));
 		assertEquals("La matrícula no tiene un formato válido.", iae.getMessage());
 	}
-
+	
 	@Test
 	void getVehiculoMatriculaValidaDevuelveVehiculoConDichaMatricula() {
 		Vehiculo vehiculo1 = Vehiculo.get(MATRICULA);
@@ -89,7 +89,7 @@ class VehiculoTest {
 		assertNotEquals(Vehiculo.get("1234BCD"), Vehiculo.get("1111BBB"));
 		assertNotEquals(Vehiculo.get("1234BCD").hashCode(), Vehiculo.get("1111BBB").hashCode());
 	}
-
+	
 	@Test
 	void toStringDevuelveLaCadenaEsperada() {
 		assertEquals(String.format("%s %s - %s", MARCA, MODELO, MATRICULA), vehiculo.toString());

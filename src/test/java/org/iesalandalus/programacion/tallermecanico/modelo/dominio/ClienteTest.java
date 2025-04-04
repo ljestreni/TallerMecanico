@@ -11,7 +11,7 @@ class ClienteTest {
 	private static final String NOMBRE = "Patricio Estrella";
 	private static final String DNI = "11111111H";
 	private static final String TELEFONO = "950111111";
-
+	
 	private final Cliente cliente = new Cliente(NOMBRE, DNI, TELEFONO);
 
 	@ParameterizedTest(name = "Cuando llamamos al constructor con nombre: {0}, dni: {1}, teléfono: {2} crea el cliente correctamente")
@@ -62,14 +62,14 @@ class ClienteTest {
 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(NOMBRE, DNI, null));
 		assertEquals("El teléfono no puede ser nulo.", npe.getMessage());
 	}
-
+	
 	@ParameterizedTest(name = "Cuando llamamos al constructor con un teléfono no válido {0} lanza una excepción")
 	@CsvSource({"''", "' '", "'   '", "12345678", "1234567890", "abcdefghi", "ABCDEFGHI"})
 	void constructorNombreValidoDniValidoTelefonoNoValidoLanzaExcepcion(String telefono) {
 		IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(NOMBRE, DNI, telefono));
 		assertEquals("El teléfono no tiene un formato válido.", iae.getMessage());
 	}
-
+	
 	@Test
 	void constrctorClienteValidoCopiaClienteCorrectamente() {
 		Cliente clienteCopia = new Cliente(cliente);
@@ -82,7 +82,7 @@ class ClienteTest {
 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(null));
 		assertEquals("No es posible copiar un cliente nulo.", npe.getMessage());
 	}
-
+	
 	@Test
 	void getClienteDniValidoDevuelveClienteConDichoDni() {
 		Cliente cliente1 = Cliente.get(DNI);
@@ -116,7 +116,7 @@ class ClienteTest {
 		assertNotEquals(Cliente.get("11223344B"), Cliente.get("11111111H"));
 		assertNotEquals(Cliente.get("11223344B").hashCode(), Cliente.get("11111111H").hashCode());
 	}
-
+	
 	@Test
 	void toStringDevuelveLaCadenaEsperada() {
 		assertEquals(String.format("%s - %s (%s)", NOMBRE, DNI, TELEFONO), cliente.toString());

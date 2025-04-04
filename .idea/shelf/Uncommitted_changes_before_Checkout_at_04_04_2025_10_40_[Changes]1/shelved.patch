@@ -1,0 +1,449 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Tarea: Taller mecánico\r\n## Profesor: José Ramón Jiménez Reyes\r\n## Alumno: Lorenzo José Estrella Nieto \r\n\r\nUn nuevo cliente que posee un taller mecánico nos ha pedido que le hagamos una aplicación para gestionar su taller. El taller se dedica a realizar diferentes trabajos a los\r\nvehículos, aunque el cliente en este **primer sptint** quiere que nos centremos en los trabajos de revisión de un vehículo.\r\n\r\nEl taller cuenta con una serie de **clientes** de los que desea almacenar su **nombre**, **DNI** y **teléfono**. Un cliente podrá cambiar su nombre y su teléfono.\r\n\r\nPara los **vehículos** nos interesa almacenar su **marca**, **modelo** y **matrícula**, pero no almacenaremos su propietario ya que los trabajos se facturan al cliente que los trae al taller.\r\n\r\nCuando un vehículo llega al taller, el mecánico encargado le registrará una **nueva revisón** en la que se anota el **cliente** que lo ha traido, el **vehículo** sobre el que se hará la revisión y la **fecha de inicio**, esto podremos anotarlo con posterioridad en nuestra aplicación. Cada trabajo deberá almacenar la fecha de llegada al taller, el número de horas dedicadas al mismo (que al llegar será 0 y que el mecánico irá aumentando según el tiempo que le dedique cada día), el precio del material que se va necesitando, que también cambiará con el trascurso de la revisión. \r\n\r\nCuando se termine la revisión, se anota la fecha de finalización y ya no se podrá cambiar el número de horas de dicho trabajo, ni el precio del material.\r\n\r\nLas revisiones tendrán un precio, que se calcula como el resultante de multiplicar el número de **horas** empleadas por **30 €** más el número de **días** que el vehículo\r\nhaya permanecido en el taller multiplicado por **10 €** más el **precio del material** empleado por **1.5 €**.\r\n\r\nEl programa debe poder llevar una gestión de los clientes (añadir clientes, borrar clientes, buscar clientes por DNI, modificar clientes por su DNI y listar los clientes). \r\n\r\nPara los vehículos se llevará la misma gestión, a diferencia que estos no se pueden modificar.\r\n\r\nPara las revisiones será parecida aunque tendremos más opciones tales como añadirle horas, añadirle precio del material y cerrarlas, listar revisiones por cliente y listar revisiones por vehículo.\r\n\r\nEl programa deberá mostrar un menú que permita llevar a cabo toda la gestión del taller que por ahora nos ha pedido el cliente.\r\n\r\nTu tarea consiste en realizar una primera versión de esta aplicación.\r\n\r\nEn este repositorio de GitHub hay un esqueleto de proyecto **gradle** con las dependencias necesarias del proyecto y que ya lleva incluidos todos los test necesarios que el programa debe pasar.\r\n\r\nPara ello te muestro un diagrama de clases para el mismo y poco a poco te iré explicando los diferentes pasos a realizar:\r\n\r\n![Diagrama de clases de la tarea](src/main/resources/uml/tallerMecanico.jpg)\r\n\r\n\r\n#### Primeros Pasos\r\n1. Lo primero que debes hacer es un **fork** del repositorio donde he colocado el esqueleto de este proyecto.\r\n2. Clona tu repositorio remoto recién copiado en GitHub a un repositorio local que será donde irás realizando lo que a continuación se te pide. Modifica el archivo `README.md` para que incluya tu nombre en el apartado \"Alumno\". Realiza tu **primer commit**.\r\n3. Crea una nueva rama de trabajo `sprint_inicial` y cámbiate a dicha rema para comenzar a trabajar.\r\n\r\n#### TallerMecanicoExcepcion\r\n1. Crea la excepción `TallerMecanicoExcepcion` de forma que ésta sea comprobada.\r\n\r\n#### Cliente\r\n1. Crea la clase `Cliente` con los atributos y visibilidad adecuados. \r\n2. Crea los métodos de acceso y modificación de cada atributo, teniendo en cuenta que un **nombre** estará compuesto de palabras separadas por un espacio y cada palabra comenzará con una mayúscula y continuará con minúsculas. El **DNI** y el **teléfono** deben también tener un formato válido. Debes comprobar que la **letra** del **DNI** sea **correcta**. Debes crear las constantes para las expresiones regulares que luego utilizarás en los métodos de modificación. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado. También debes tener en cuenta que tanto el nombre como el teléfono de un cliente pueden cambiar.\r\n3. Crea el **constructor con parámetros** que hará uso de los métodos de modificación.\r\n4. Crea el **constructor copia**.\r\n5. Crea el **método de clase** que se indica en el diagrama, que dado un DNI correcto nos devuelva un cliente válido con ese DNI y que será utilizado en las futuras **búsquedas**.\r\n6. Un cliente será igual a otro si su DNI es el mismo. Basándote en ello crea los métodos `equals` y `hashCode`.\r\n7. Crea el método `toString` que devuelva la cadena que esperan los tests.\r\n8. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Vehiculo\r\n1. Crea el registro `Vehiculo` con los atributos indicados.\r\n2. Crea los métodos de verificación de los atributos, teniendo en cuenta que la **marca** puede seguir alguno de los siguientes patrones: Seat, Land Rover, KIA, Rolls-Royce, SsangYong. El **modelo** simplemente no debe estar en blanco. La matrícula tendrá el formato de una matrícula española moderna (1111BBB). Debes crear las constantes para las expresiones regulares que luego utilizarás en los métodos de modificación. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado.\r\n3. Crea el **constructor canónico** que hará uso de los métodos de verificación.\r\n4. Crea el **método de clase** que se indica en el diagrama, que dada una matrícula correcta nos devuelva un vehículo válido con dicha matrícula y que será utilizado en las futuras **búsquedas**.\r\n5. Un vehívculo será igual a otro si su matrícula es la misma. Basándote en ello crea los métodos `equals` y `hashCode`.\r\n6. Crea el método `toString` que devuelva la cadena que esperan los tests.\r\n7. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Revision\r\n1. Crea la clase `Revision` con los atributos y visibilidad adecuados.\r\n2. Crea los métodos de acceso y modificación de cada atributo, teniendo en cuenta que es posible registrar una revisión pasada (nuestro cliente a veces apunta las revisiones y luego los pasa a la aplicación). La fecha de inicio de la revisón no puede ser posterior a hoy. La fecha de fin no puede ser igual o anterior a la fecha de inicio y tampoco puede ser posterior a hoy. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado.\r\n3. Crea el **constructor con parámetros** que hará uso de los métodos de modificación.\r\n4. Crea el **constructor copia** que creará una copia y en el caso del cliente creará una nueva instancia llamando a su constructor copia.\r\n5. Crea los métodos `anadirHoras` y `anadirPrecioMaterial` que comprueben si los parámetros son correctos y laa añada al atributo adecuado.\r\n6. Crea el método `cerrar` que se encargará de asignar la fecha de fin si esta es correcta.\r\n7. Crea el método `getPrecio` que devolverá el precio de la revisión conforme a la fórmula establecida por nuestro cliente y explicada anteriormente.\r\n8. Una revisión será igual a otro si es el mismo cliente, el mismo turismo y la fecha de inicio. Basándote en ello crea los métodos `equals` y `hashCode`.\r\n9. Crea el método `toString` que devuelva la cadena que esperan los tests.\r\n10. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Clientes\r\n1. Crea la clase `Clientes` que gestionará una lista de clientes (`Cliente`) sin permitir elementos repetidos.\r\n2. Crea el **constructor por defecto** que simplemente creará la lista.\r\n3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).\r\n4. Crea el método `insertar` que añadirá un cliente a la lista si éste no es nulo y no existe aún en la lista.\r\n5. Crea el método `modificar` que permitirá cambiar el nombre o el teléfono (si estos parámetros no son nulos ni blancos) de un cliente existente y si no lanzará la correspondiente excepción. Devolverá `true` o  `false` dependiendo de si lo ha modificado o no.\r\n6. Crea el método `buscar` que devolverá el cliente si este se encuentra en la lista y `null` en caso contrario.\r\n7. Crea el método `borrar` que borrará el cliente si este existe en la lista o lanzará una excepción en caso contrario.\r\n8. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Vehiculos\r\n1. Crea la clase `Vehiculos` que gestionará una lista de vehículos (`Vehiculo`) sin permitir elementos repetidos.\r\n2. Crea el **constructor por defecto** que simplemente creará la lista.\r\n3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).\r\n4. Crea el método `insertar` que añadirá un vehículo a la lista si este no es nulo y no existe aún en la lista.\r\n5. Crea el método `buscar` que devolverá el turismo si este se encuentra en la lista y `null` en caso contrario.\r\n6. Crea el método `borrar` que borrará el turismo si este existe en la lista o lanzará una excepción en caso contrario.\r\n7. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Revisiones\r\n1. Crea la clase `Revisiones` que gestionará una lista de revisiones (`Revision`) sin permitir elementos repetidos.\r\n2. Crea el **constructor por defecto** que simplemente creará la lista.\r\n3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).\r\n4. Crea el método `get` para un cliente dado, que devolverá una nueva lista con las revisiones para dicho cliente (no debe crear nuevas instancias).\r\n5. Crea el método `get` para un vehículo dado, que devolverá una nueva lista con las revisiones para dicho vehículo (no debe crear nuevas instancias).\r\n6. Crea el método `insertar` que añadirá una revisión a la lista si esta no es nula y pasa la comprobación anterior.\r\n7. Crea el método `comprobarRevision` que comprobará que en la lista no existe ninguna revisión sin cerrar ni para el cliente ni para el vehículo y que tampoco hay una revisión cerrada, del cliente o del vehículo, con fecha de fin posterior a la fecha en la que se pretende comenzar la revisión.\r\n8. Crea el método `getRevision` que comprobará que la revisión no es nula y devol verá la revisión encontrada en la lista o lanzará una excepción. Este método será utilizado en métodos posteriores.\r\n9. Crea el método `anadirHoras` que le añadirá horas a la revisión encontrada utilizando el método anterior.\r\n10. Crea el método `anadirPrecioMaterial` que añadirá precio del material a la revisión encontrada utilizando el método anterior. \r\n11. Crea el método `cerrar` que cerrará (asignará la fecha de fin) a la revisión encontrada utilizando el método anteiror.\r\n12. Crea el método `buscar` que devolverá la revisión si esta se encuentra en la lista y null en caso contrario.\r\n13. Crea el método `borrar` que borrará la revisión si esta existe en la lista o lanzará una excepción en caso contrario.\r\n14. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Modelo\r\n1. Crea la clase `Modelo` que gestionará todo el modelo de nuestra aplicación. Será la encargada de comunicarse con las tres clases anteriores.\r\n2. Crea el método `comenzar` que creará la instancia de las clases de negocio anteriores.\r\n3. Crea el método `terminar` que simplemente mostrará un mensaje informativo indicando que el modelo ha terminado.\r\n4. Crea los diferentes métodos `insertar`, teniendo en cuenta que ahora ya si insertaremos nuevas instancias utilizando los constructores copia (exceptuando `Vehiculo` ya que es un registro y, por tanto, inmutable) y que en el caso de las revisiones, primero debe buscar el cliente y el vehículo y utilizar dichas instancias encontradas.\r\n5. Crea los diferentes métodos `buscar`, que devolverá una nueva instancia del elemento encontrado si este existe.\r\n6. Crea el método `modificar` que invocará a su homólogo en la clase de negocio.\r\n7. Crea los métodos `anadirHoras` y `anadirPrecioMaterial` que invocará a sus homólogos en la clase de negocio.\r\n8. Crea el método `cerrar` que realizará el cierre, si es posible, de la revisión pasada.\r\n9. Crea los diferentes métodos `borrar`, teniendo en cuenta que los borrados se realizarán en cascada, es decir, si borramos un cliente también borraremos todos sus revisiones y lo mismo pasará con los vehículos.\r\n10. Crea los diferentes métodos `get`, que deben devolver una nueva lista, pero que contenga nuevas instancias no una referencia de los elementos.\r\n11. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.\r\n\r\n#### Opcion\r\n1. Crea el enumerado `Opcion` que contendrá las diferentes opciones de nuestro menú de opciones y que será utilizado posteriormente para mostrar las posibles opciones a realizar. Cada instancia debe estar parametrizada con una cadena con el texto adecuado a mostrarnos y el número de la opción asignado (no nos basaremos en su orden).\r\n2. Crea el atributo con el texto y el número de la opción a mostrar que será asignado en el constructor con parámetros, que también debes crear.\r\n3. Crea e inicializa el mapa compuesto por los números de opciones y su opción correspondiente.\r\n4. Crea el método `esValida` que comprobará si el número de la opción pasado se encuentra en el mapa.\r\n5. Crea el método `get` que devolverá la opción adecuada si el número de la opción pasado es correcto y lanzará una excepción en caso contrario.\r\n6. Crea el método `toString` que devuelva una cadena con el número de la opción y el texto de la opción que luego utilizaremos para mostrar las diferentes opciones del menú.\r\n7. Realiza un **commit**.\r\n\r\n#### Consola\r\n1. Crea la clase de utilidades `Consola` que contendrá métodos que serán utilizados desde la vista para mostrar información por consola o leer información de la misma.\r\n2. Crea el constructor adecuado.\r\n3. Crea el método `mostrarCabecera` que mostrará por pantalla el mensaje pasado por parámetro y luego mostrará un subrayado compuesto de guiones con su misma longitud.\r\n4. Crea el método `mostrarMenu` que mostrará una cabecera informando del cometido de la aplicación y mostrará las diferentes opciones del menú.\r\n5. Crea el método `leerReal` que mostrará el mensaje pasado por parámetro y devolverá el real que lea por consola.\r\n6. Crea el método `leerEntero` que hará lo mismo pero con un entero.\r\n7. Crea el método `leerCadena` que hará lo mismo pero con una cadena.\r\n8. Crea el método `leerFecha` que hará lo mismo, pero con una fecha. Deberá repetir la lectura mientras la fecha no se haya podido crear correctamente.\r\n9. Crea el método `elegirOpcion` que leerá un entero (utilizando el método anteriormente creado) asociado a la opción y devolverá la opción correspondiente. Si el entero introducido no se corresponde con ninguna opción deberá volver a leerlo hasta que éste sea válido.\r\n10. Crea los demás métodos de la clase que harán uso de los métodos privados anteriormente creados y que son autodescriptivos. Si tienes alguna duda con alguno, no dudes en preguntarme.\r\n11. Realiza un **commit**.\r\n\r\n#### Vista\r\n1. Crea la clase `Vista` que será la encargada de la interacción con el usuario y que se comunicará con el controlador para pedirle realizar las diferentes acciones. Crea el atributo correspondiente, aunque aún no existe su clase y te lo marcará como erróneo.\r\n2. Crea el método `setControlador` que asignará el controlador pasado al atributo si éste no es nulo.\r\n3. Crea el método `comenzar` que mostrará el menú, leerá una opción de consola y la ejecutará. Repetirá este proceso mientras la opción elegida no sea la correspondiente a salir. Utilizará los correspondientes métodos de la clase Consola y llamará al método ejecutar de esta clase que describiré a continuación.\r\n4. Crea el método `terminar` que simplemente mostrará un mensaje de despedida por consola.\r\n5. Crea el método `ejecutar` que dependiendo de la opción pasada por parámetro invocará a un método o a otro.\r\n6. Crea los métodos asociados a cada una de las opciones. Estos métodos deberán mostrar una cabecera informando en que opción nos encontramos, pedirnos los datos adecuados y realizar la operación adecuada llamando al método correspondiente de nuestro controlador. También deben controlar todas las posibles excepciones.\r\n7. Realiza un **commit**.\r\n\r\n#### Controlador\r\n1. Crea la clase `Controlador` que será la encargada de hacer de intermediario entre la vista y el modelo.\r\n2. Crea los atributos adecuados.\r\n3. Crea el constructor con parámetros que comprobará que no son nulos y los asignará a los atributos. Además debe llamar al método `setControlador` de la vista con una instancia suya.\r\n4. Crea los métodos `comenzar` y `terminar`, que llamarán a los correspondientes métodos en el modelo y en la vista.\r\n5. Crea los demás métodos que simplemente harán una llamada al correspondiente método del modelo.\r\n6. Realiza un **commit**.\r\n\r\n#### Main\r\n1. Crea la clase `Main` con un único método `main` que será el método de entrada a nuestra aplicación. Este método simplemente creará una vista, un modelo y un controlador, pasándoles las instancias antes creadas. Luego simplemente invocará al método `comenzar` del controlador.\r\n2. Realiza las pruebas que estimes oportunas y cuando consideres que todo es correcto, realiza el último **commit** y seguidamente realiza el **push** a tu repositorio remoto.\r\n\r\n#### Se valorará:\r\n\r\n- La indentación debe ser correcta en cada uno de los apartados.\r\n- Los identificadores utilizados deben ser adecuados y descriptivos.\r\n- Se debe utilizar la clase Entrada para realizar la entrada por teclado que se encuentra como dependencia de nuestro proyecto en la librería entrada.\r\n- El programa debe pasar todas las pruebas que van en el esqueleto del proyecto y toda entrada del programa será validada, para evitar que el programa termine abruptamente debido a una excepción.\r\n- La corrección ortográfica tanto en los comentarios como en los mensajes que se muestren al usuario.\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 96941b6b68645a139763dd48a5c1af069a408c45)
++++ b/README.md	(date 1743755395743)
+@@ -1,173 +1,94 @@
+ # Tarea: Taller mecánico
+ ## Profesor: José Ramón Jiménez Reyes
+-## Alumno: Lorenzo José Estrella Nieto 
++## Alumno: Lorenzo José Estrella Nieto
+ 
+-Un nuevo cliente que posee un taller mecánico nos ha pedido que le hagamos una aplicación para gestionar su taller. El taller se dedica a realizar diferentes trabajos a los
+-vehículos, aunque el cliente en este **primer sptint** quiere que nos centremos en los trabajos de revisión de un vehículo.
+-
+-El taller cuenta con una serie de **clientes** de los que desea almacenar su **nombre**, **DNI** y **teléfono**. Un cliente podrá cambiar su nombre y su teléfono.
++Al cliente le ha gustado bastante la aplicación, pero nos comenta algunas mejoras que necesita la anterior versión y nuevas funcionalidades que le gustaría que tuviese. Todo ello lo abordaremos en este **tercer sprint**.
+ 
+-Para los **vehículos** nos interesa almacenar su **marca**, **modelo** y **matrícula**, pero no almacenaremos su propietario ya que los trabajos se facturan al cliente que los trae al taller.
++Nos comenta que necesita que añadamos persistencia de datos, ya que tal y como está ahora la aplicación no es funcional. 
+ 
+-Cuando un vehículo llega al taller, el mecánico encargado le registrará una **nueva revisón** en la que se anota el **cliente** que lo ha traido, el **vehículo** sobre el que se hará la revisión y la **fecha de inicio**, esto podremos anotarlo con posterioridad en nuestra aplicación. Cada trabajo deberá almacenar la fecha de llegada al taller, el número de horas dedicadas al mismo (que al llegar será 0 y que el mecánico irá aumentando según el tiempo que le dedique cada día), el precio del material que se va necesitando, que también cambiará con el trascurso de la revisión. 
++También nos comenta que le gustaría que los listados se mostrasen ordenados de la siguiente forma:
++- **Clientes**: Ordenados por nombre y DNI.
++- **Vehículos**: Ordenados por marca, modelo y matrícula.
++- **Trabajos**: Ordenados por fecha de inicio y por cliente (nombre y DNI).
+ 
+-Cuando se termine la revisión, se anota la fecha de finalización y ya no se podrá cambiar el número de horas de dicho trabajo, ni el precio del material.
++También nos comenta que le gustaría poder mostrar estadísticas mensuales indicando el número de tipos de trabajos realizados en dicho més.
+ 
+-Las revisiones tendrán un precio, que se calcula como el resultante de multiplicar el número de **horas** empleadas por **30 €** más el número de **días** que el vehículo
+-haya permanecido en el taller multiplicado por **10 €** más el **precio del material** empleado por **1.5 €**.
++Por tanto, en este **tercer sprint** añadiremos **persistencia** a los datos utilizando para ello **ficheros XML**, para lo que sustituiremos el modelo que teníamos de memoria, por un modelo de ficheros. **Ordenaremos los listados** al mostrarlos y permitiremos mostrar **estadísticas mensuales por tipo de vehículo**.
+ 
+-El programa debe poder llevar una gestión de los clientes (añadir clientes, borrar clientes, buscar clientes por DNI, modificar clientes por su DNI y listar los clientes). 
++Al **analizar** cómo llevaremos a cabo la **persistencia**, hemos decidido leer los ficheros al arrancar la aplicación, gestionarlos en memoria y almacenarlos en los mismos ficheros al cerrar la aplicación. Cada clase de la implementación de la capa ficheros leerá su fichero y lo almacenará en una lista tal y como se hacía en la versión de memoria. Pero con esto nos surge algún que otro problema:
++- Los trabajos guardan una referencia del cliente y del vehículo, pero dicha clase no es capaz de comunicarse con las otras para poder buscar dichas referencias. Para solucionar este problema vamos a utilizar el **patrón singlenton**, con lo que solo podremos tener una única instancia de cada clase de la capa de ficheros. Con esto
++conseguimos que no haya más de una instancia que pueda leer el fichero y posteriormente modificarlo, por lo que podremos acceder sin problemas desde los trabajos a los clientes y a los vehículos para buscar las referencias.
++- Pero esto acarrea otro problema y es que estamos exponiendo dichas instancias a toda la aplicación, lo que podría permitir que desde cualquier lugar se pueda acceder a las mismas provocando efectos indeseados y rompiendo con el principio de ocultación de la información. Para solucionarlo jugaremos con las visibilidades. Haremos que los métodos que nos devuelven la instancia de cada clase (`getInstancia`) tengan una **visibilidad de paquete**, con lo que solo podremos acceder a ellas desde el paquete ficheros. También tenemos que hacer que la factoría de fuente de datos solo permita crearlas desde el mismo paquete para que solo se puedan crear
++fuentes de datos desde la capa de modelo. 
+ 
+-Para los vehículos se llevará la misma gestión, a diferencia que estos no se pueden modificar.
++En este repositorio hay un esqueleto de proyecto **gradle** con las dependencias necesarias del proyecto y que, en la rama `ficherosXML`, ya lleva incluidos todos los test necesarios que el modelo debe pasar, con todo lo que hemos comentado.
+ 
+-Para las revisiones será parecida aunque tendremos más opciones tales como añadirle horas, añadirle precio del material y cerrarlas, listar revisiones por cliente y listar revisiones por vehículo.
+-
+-El programa deberá mostrar un menú que permita llevar a cabo toda la gestión del taller que por ahora nos ha pedido el cliente.
+-
+-Tu tarea consiste en realizar una primera versión de esta aplicación.
+-
+-En este repositorio de GitHub hay un esqueleto de proyecto **gradle** con las dependencias necesarias del proyecto y que ya lleva incluidos todos los test necesarios que el programa debe pasar.
+-
+-Para ello te muestro un diagrama de clases para el mismo y poco a poco te iré explicando los diferentes pasos a realizar:
++Para ello te muestro un diagrama de clases (en el que cuando se expresa cardinalidad `*` queremos expresar que se hará uso de **listas**) para el mismo y poco a poco te iré explicando los diferentes pasos a realizar:
+ 
+ ![Diagrama de clases de la tarea](src/main/resources/uml/tallerMecanico.jpg)
+ 
+ 
+ #### Primeros Pasos
+-1. Lo primero que debes hacer es un **fork** del repositorio donde he colocado el esqueleto de este proyecto.
+-2. Clona tu repositorio remoto recién copiado en GitHub a un repositorio local que será donde irás realizando lo que a continuación se te pide. Modifica el archivo `README.md` para que incluya tu nombre en el apartado "Alumno". Realiza tu **primer commit**.
+-3. Crea una nueva rama de trabajo `sprint_inicial` y cámbiate a dicha rema para comenzar a trabajar.
+-
+-#### TallerMecanicoExcepcion
+-1. Crea la excepción `TallerMecanicoExcepcion` de forma que ésta sea comprobada.
++1. Lo primero que debes hacer es mezclar tu rama `refactorizacion_herencia` con la rama `master` y crear un nueva rama etiquetada como `ficheros` a partir de ella.
++2. Añade el remote de mi repositorio (si aún no lo tenías añadido) y haz un `pull` del mismo de la rama `master`.
++3. Cámbiate a la rama `ficheros` y haz otro pull de mi remote de la misma rama.
++4. Modifica el archivo `README.md` para que incluya tu nombre en el apartado "Alumno".
++5. Haz que al controlador se le pasen las distintas fábricas (modelo, fuente de datos y vista) y sea él el que cree los objetos. Realiza tu **primer commit**.
+ 
+-#### Cliente
+-1. Crea la clase `Cliente` con los atributos y visibilidad adecuados. 
+-2. Crea los métodos de acceso y modificación de cada atributo, teniendo en cuenta que un **nombre** estará compuesto de palabras separadas por un espacio y cada palabra comenzará con una mayúscula y continuará con minúsculas. El **DNI** y el **teléfono** deben también tener un formato válido. Debes comprobar que la **letra** del **DNI** sea **correcta**. Debes crear las constantes para las expresiones regulares que luego utilizarás en los métodos de modificación. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado. También debes tener en cuenta que tanto el nombre como el teléfono de un cliente pueden cambiar.
+-3. Crea el **constructor con parámetros** que hará uso de los métodos de modificación.
+-4. Crea el **constructor copia**.
+-5. Crea el **método de clase** que se indica en el diagrama, que dado un DNI correcto nos devuelva un cliente válido con ese DNI y que será utilizado en las futuras **búsquedas**.
+-6. Un cliente será igual a otro si su DNI es el mismo. Basándote en ello crea los métodos `equals` y `hashCode`.
+-7. Crea el método `toString` que devuelva la cadena que esperan los tests.
+-8. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
++#### Generación de las estadísticas
++1. Crea el enumerado `TipoTrabajo` tal y como se indica en el diagrama de clases.
++2. Añade el método `getEstadisticasMensuales`a la clase `Trabajos` e impleméntalo adecuadamente (utiliza el método `inicializarEstadisticas` para hacerlo más sencillo).
++3. Añádelos a la interfaz `ITrabajos`, al modelo y a la interfaz del modelo.
++4. Añade un nuevo evento para permitir ejecutar esta opción.
++5. Añade a la vista el método para leer el mes y también a la interfaz.
++6. Añade a la vista el método para mostrar las estadísticas y también a la interfaz.
++7. Haz que el controlador tenga en cuenta este evento y actúe en ctmecuencia. Realiza un **commit**.
+ 
+-#### Vehiculo
+-1. Crea el registro `Vehiculo` con los atributos indicados.
+-2. Crea los métodos de verificación de los atributos, teniendo en cuenta que la **marca** puede seguir alguno de los siguientes patrones: Seat, Land Rover, KIA, Rolls-Royce, SsangYong. El **modelo** simplemente no debe estar en blanco. La matrícula tendrá el formato de una matrícula española moderna (1111BBB). Debes crear las constantes para las expresiones regulares que luego utilizarás en los métodos de modificación. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado.
+-3. Crea el **constructor canónico** que hará uso de los métodos de verificación.
+-4. Crea el **método de clase** que se indica en el diagrama, que dada una matrícula correcta nos devuelva un vehículo válido con dicha matrícula y que será utilizado en las futuras **búsquedas**.
+-5. Un vehívculo será igual a otro si su matrícula es la misma. Basándote en ello crea los métodos `equals` y `hashCode`.
+-6. Crea el método `toString` que devuelva la cadena que esperan los tests.
+-7. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
++#### Ordenación de los listados
++1. Haz que a la hora de mostrar los clientes se muestren ordenados tal y como indica el enunciado.
++2. Haz lo mismo para los vehículos.
++3. Haz lo mismo para los trabajos. Realiza un **commit**.
+ 
+-#### Revision
+-1. Crea la clase `Revision` con los atributos y visibilidad adecuados.
+-2. Crea los métodos de acceso y modificación de cada atributo, teniendo en cuenta que es posible registrar una revisión pasada (nuestro cliente a veces apunta las revisiones y luego los pasa a la aplicación). La fecha de inicio de la revisón no puede ser posterior a hoy. La fecha de fin no puede ser igual o anterior a la fecha de inicio y tampoco puede ser posterior a hoy. Los métodos de modificación lanzarán las excepciones adecuadas en caso de que el valor que se pretenda asignar al atributo no sea adecuado.
+-3. Crea el **constructor con parámetros** que hará uso de los métodos de modificación.
+-4. Crea el **constructor copia** que creará una copia y en el caso del cliente creará una nueva instancia llamando a su constructor copia.
+-5. Crea los métodos `anadirHoras` y `anadirPrecioMaterial` que comprueben si los parámetros son correctos y laa añada al atributo adecuado.
+-6. Crea el método `cerrar` que se encargará de asignar la fecha de fin si esta es correcta.
+-7. Crea el método `getPrecio` que devolverá el precio de la revisión conforme a la fórmula establecida por nuestro cliente y explicada anteriormente.
+-8. Una revisión será igual a otro si es el mismo cliente, el mismo turismo y la fecha de inicio. Basándote en ello crea los métodos `equals` y `hashCode`.
+-9. Crea el método `toString` que devuelva la cadena que esperan los tests.
+-10. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
++#### Persistencia en ficheros XML
++1. Refactoriza la fuente de datos `MEMORIA` para que pase a llamarse `FICHEROS` (refactoriza lo que creas necesario también).
++2. Añade los métodos `comenzar` y `terminar` en las interfaces de la fuente de datos.
++3. Implementa el **patrón Singleton** en las clases `Clientes`, `Vehiculos` y `Trabajos`.
++4. Implementa los métodos `comenzar` y `terminar` para la clase `Clientes` del paquete `ficheros` para que al comenzar lea el fichero XML de vehículos, lo almacene en una lista y al terminar lo vuelva a almacenar en dicho fichero. El fichero se debe llamar `clientes.xml` y debes utilizar **rutas relativas** para trabajar con él. Debes implementar los métodos que se especifican en el diagrama y que son autoexplicativos. La estructura del fichero será la siguiente:
++    ~~~xml
++    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
++    <clientes>
++        <cliente dni="11223344B" nombre="Bob Esponja" telefono="950112233"/>
++        <cliente dni="11111111H" nombre="Patricio Estrella" telefono="950111111"/>
++    </clientes>
++    ~~~
++5. Implementa los métodos `comenzar` y `terminar` para la clase `Vehiculos` del paquete `ficheros` para que al comenzar lea el fichero XML de vehículos, lo almacene en una lista y al terminar lo vuelva a almacenar en dicho fichero. El fichero se debe llamar `vehiculos.xml` y debes utilizar **rutas relativas** para trabajar con él. Debes implementar los métodos que se especifican en el diagrama y que son autoexplicativos. La estructura del fichero será la siguiente:
++    ~~~xml
++    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
++    <vehiculos>
++        <vehiculo marca="Scania" matricula="1234BCD" modelo="Citywide"/>
++        <vehiculo marca="Seat" matricula="1111BBB" modelo="León"/>
++        <vehiculo marca="Renault" matricula="2222CCC" modelo="Megane"/>
++        <vehiculo marca="Mercedes-Benz" matricula="3333DDD" modelo="eSprinter"/>
++    </vehiculos>
++    ~~~
++6. Implementa los métodos `comenzar` y `terminar` para la clase `Trabajos` del paquete `ficheros` para que al comenzar lea el fichero XML de vehículos, lo almacene en una lista y al terminar lo vuelva a almacenar en dicho fichero. El fichero se debe llamar `trabajos.xml` y debes utilizar **rutas relativas** para trabajar con él. Debes implementar los métodos que se especifican en el diagrama y que son autoexplicativos. La estructura del fichero será la siguiente:
++    ~~~xml
++    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
++    <trabajos>
++        <trabajo cliente="11223344B" fechaFin="07/03/2024" fechaInicio="01/03/2024" horas="10" tipo="revision" vehiculo="3333DDD"/>
++        <trabajo cliente="11111111H" fechaFin="14/03/2024" fechaInicio="10/03/2024" tipo="revision" vehiculo="1111BBB"/>
++        <trabajo cliente="11223344B" fechaFin="16/03/2024" fechaInicio="10/03/2024" horas="5" tipo="mecanico" vehiculo="1234BCD"/>
++        <trabajo cliente="11111111H" fechaInicio="15/03/2024" precioMaterial="125.500000" tipo="mecanico" vehiculo="2222CCC"/>
++    </trabajos>
++    ~~~
++7. Comprueba que todo funciona correctamente y que pasa todos los test. Realiza un **commit** y seguidamente realiza el **push** a tu repositorio remoto.
+ 
+-#### Clientes
+-1. Crea la clase `Clientes` que gestionará una lista de clientes (`Cliente`) sin permitir elementos repetidos.
+-2. Crea el **constructor por defecto** que simplemente creará la lista.
+-3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).
+-4. Crea el método `insertar` que añadirá un cliente a la lista si éste no es nulo y no existe aún en la lista.
+-5. Crea el método `modificar` que permitirá cambiar el nombre o el teléfono (si estos parámetros no son nulos ni blancos) de un cliente existente y si no lanzará la correspondiente excepción. Devolverá `true` o  `false` dependiendo de si lo ha modificado o no.
+-6. Crea el método `buscar` que devolverá el cliente si este se encuentra en la lista y `null` en caso contrario.
+-7. Crea el método `borrar` que borrará el cliente si este existe en la lista o lanzará una excepción en caso contrario.
+-8. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
+-
+-#### Vehiculos
+-1. Crea la clase `Vehiculos` que gestionará una lista de vehículos (`Vehiculo`) sin permitir elementos repetidos.
+-2. Crea el **constructor por defecto** que simplemente creará la lista.
+-3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).
+-4. Crea el método `insertar` que añadirá un vehículo a la lista si este no es nulo y no existe aún en la lista.
+-5. Crea el método `buscar` que devolverá el turismo si este se encuentra en la lista y `null` en caso contrario.
+-6. Crea el método `borrar` que borrará el turismo si este existe en la lista o lanzará una excepción en caso contrario.
+-7. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
+-
+-#### Revisiones
+-1. Crea la clase `Revisiones` que gestionará una lista de revisiones (`Revision`) sin permitir elementos repetidos.
+-2. Crea el **constructor por defecto** que simplemente creará la lista.
+-3. Crea el método `get` que devolverá una nueva lista con los mismos elementos (no debe crear nuevas instancias).
+-4. Crea el método `get` para un cliente dado, que devolverá una nueva lista con las revisiones para dicho cliente (no debe crear nuevas instancias).
+-5. Crea el método `get` para un vehículo dado, que devolverá una nueva lista con las revisiones para dicho vehículo (no debe crear nuevas instancias).
+-6. Crea el método `insertar` que añadirá una revisión a la lista si esta no es nula y pasa la comprobación anterior.
+-7. Crea el método `comprobarRevision` que comprobará que en la lista no existe ninguna revisión sin cerrar ni para el cliente ni para el vehículo y que tampoco hay una revisión cerrada, del cliente o del vehículo, con fecha de fin posterior a la fecha en la que se pretende comenzar la revisión.
+-8. Crea el método `getRevision` que comprobará que la revisión no es nula y devol verá la revisión encontrada en la lista o lanzará una excepción. Este método será utilizado en métodos posteriores.
+-9. Crea el método `anadirHoras` que le añadirá horas a la revisión encontrada utilizando el método anterior.
+-10. Crea el método `anadirPrecioMaterial` que añadirá precio del material a la revisión encontrada utilizando el método anterior. 
+-11. Crea el método `cerrar` que cerrará (asignará la fecha de fin) a la revisión encontrada utilizando el método anteiror.
+-12. Crea el método `buscar` que devolverá la revisión si esta se encuentra en la lista y null en caso contrario.
+-13. Crea el método `borrar` que borrará la revisión si esta existe en la lista o lanzará una excepción en caso contrario.
+-14. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
+-
+-#### Modelo
+-1. Crea la clase `Modelo` que gestionará todo el modelo de nuestra aplicación. Será la encargada de comunicarse con las tres clases anteriores.
+-2. Crea el método `comenzar` que creará la instancia de las clases de negocio anteriores.
+-3. Crea el método `terminar` que simplemente mostrará un mensaje informativo indicando que el modelo ha terminado.
+-4. Crea los diferentes métodos `insertar`, teniendo en cuenta que ahora ya si insertaremos nuevas instancias utilizando los constructores copia (exceptuando `Vehiculo` ya que es un registro y, por tanto, inmutable) y que en el caso de las revisiones, primero debe buscar el cliente y el vehículo y utilizar dichas instancias encontradas.
+-5. Crea los diferentes métodos `buscar`, que devolverá una nueva instancia del elemento encontrado si este existe.
+-6. Crea el método `modificar` que invocará a su homólogo en la clase de negocio.
+-7. Crea los métodos `anadirHoras` y `anadirPrecioMaterial` que invocará a sus homólogos en la clase de negocio.
+-8. Crea el método `cerrar` que realizará el cierre, si es posible, de la revisión pasada.
+-9. Crea los diferentes métodos `borrar`, teniendo en cuenta que los borrados se realizarán en cascada, es decir, si borramos un cliente también borraremos todos sus revisiones y lo mismo pasará con los vehículos.
+-10. Crea los diferentes métodos `get`, que deben devolver una nueva lista, pero que contenga nuevas instancias no una referencia de los elementos.
+-11. Comprueba que la **clase pasa los test** para la misma y cuando lo haga realiza un **commit**.
+-
+-#### Opcion
+-1. Crea el enumerado `Opcion` que contendrá las diferentes opciones de nuestro menú de opciones y que será utilizado posteriormente para mostrar las posibles opciones a realizar. Cada instancia debe estar parametrizada con una cadena con el texto adecuado a mostrarnos y el número de la opción asignado (no nos basaremos en su orden).
+-2. Crea el atributo con el texto y el número de la opción a mostrar que será asignado en el constructor con parámetros, que también debes crear.
+-3. Crea e inicializa el mapa compuesto por los números de opciones y su opción correspondiente.
+-4. Crea el método `esValida` que comprobará si el número de la opción pasado se encuentra en el mapa.
+-5. Crea el método `get` que devolverá la opción adecuada si el número de la opción pasado es correcto y lanzará una excepción en caso contrario.
+-6. Crea el método `toString` que devuelva una cadena con el número de la opción y el texto de la opción que luego utilizaremos para mostrar las diferentes opciones del menú.
+-7. Realiza un **commit**.
+-
+-#### Consola
+-1. Crea la clase de utilidades `Consola` que contendrá métodos que serán utilizados desde la vista para mostrar información por consola o leer información de la misma.
+-2. Crea el constructor adecuado.
+-3. Crea el método `mostrarCabecera` que mostrará por pantalla el mensaje pasado por parámetro y luego mostrará un subrayado compuesto de guiones con su misma longitud.
+-4. Crea el método `mostrarMenu` que mostrará una cabecera informando del cometido de la aplicación y mostrará las diferentes opciones del menú.
+-5. Crea el método `leerReal` que mostrará el mensaje pasado por parámetro y devolverá el real que lea por consola.
+-6. Crea el método `leerEntero` que hará lo mismo pero con un entero.
+-7. Crea el método `leerCadena` que hará lo mismo pero con una cadena.
+-8. Crea el método `leerFecha` que hará lo mismo, pero con una fecha. Deberá repetir la lectura mientras la fecha no se haya podido crear correctamente.
+-9. Crea el método `elegirOpcion` que leerá un entero (utilizando el método anteriormente creado) asociado a la opción y devolverá la opción correspondiente. Si el entero introducido no se corresponde con ninguna opción deberá volver a leerlo hasta que éste sea válido.
+-10. Crea los demás métodos de la clase que harán uso de los métodos privados anteriormente creados y que son autodescriptivos. Si tienes alguna duda con alguno, no dudes en preguntarme.
+-11. Realiza un **commit**.
+-
+-#### Vista
+-1. Crea la clase `Vista` que será la encargada de la interacción con el usuario y que se comunicará con el controlador para pedirle realizar las diferentes acciones. Crea el atributo correspondiente, aunque aún no existe su clase y te lo marcará como erróneo.
+-2. Crea el método `setControlador` que asignará el controlador pasado al atributo si éste no es nulo.
+-3. Crea el método `comenzar` que mostrará el menú, leerá una opción de consola y la ejecutará. Repetirá este proceso mientras la opción elegida no sea la correspondiente a salir. Utilizará los correspondientes métodos de la clase Consola y llamará al método ejecutar de esta clase que describiré a continuación.
+-4. Crea el método `terminar` que simplemente mostrará un mensaje de despedida por consola.
+-5. Crea el método `ejecutar` que dependiendo de la opción pasada por parámetro invocará a un método o a otro.
+-6. Crea los métodos asociados a cada una de las opciones. Estos métodos deberán mostrar una cabecera informando en que opción nos encontramos, pedirnos los datos adecuados y realizar la operación adecuada llamando al método correspondiente de nuestro controlador. También deben controlar todas las posibles excepciones.
+-7. Realiza un **commit**.
+-
+-#### Controlador
+-1. Crea la clase `Controlador` que será la encargada de hacer de intermediario entre la vista y el modelo.
+-2. Crea los atributos adecuados.
+-3. Crea el constructor con parámetros que comprobará que no son nulos y los asignará a los atributos. Además debe llamar al método `setControlador` de la vista con una instancia suya.
+-4. Crea los métodos `comenzar` y `terminar`, que llamarán a los correspondientes métodos en el modelo y en la vista.
+-5. Crea los demás métodos que simplemente harán una llamada al correspondiente método del modelo.
+-6. Realiza un **commit**.
+-
+-#### Main
+-1. Crea la clase `Main` con un único método `main` que será el método de entrada a nuestra aplicación. Este método simplemente creará una vista, un modelo y un controlador, pasándoles las instancias antes creadas. Luego simplemente invocará al método `comenzar` del controlador.
+-2. Realiza las pruebas que estimes oportunas y cuando consideres que todo es correcto, realiza el último **commit** y seguidamente realiza el **push** a tu repositorio remoto.
+ 
+ #### Se valorará:
+ 
+ - La indentación debe ser correcta en cada uno de los apartados.
+ - Los identificadores utilizados deben ser adecuados y descriptivos.
+-- Se debe utilizar la clase Entrada para realizar la entrada por teclado que se encuentra como dependencia de nuestro proyecto en la librería entrada.
++- Se debe utilizar la clase `Entrada` para realizar la entrada por teclado que se encuentra como dependencia de nuestro proyecto en la librería entrada.
+ - El programa debe pasar todas las pruebas que van en el esqueleto del proyecto y toda entrada del programa será validada, para evitar que el programa termine abruptamente debido a una excepción.
+ - La corrección ortográfica tanto en los comentarios como en los mensajes que se muestren al usuario.
+ 
+Index: src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/VehiculoTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.iesalandalus.programacion.tallermecanico.modelo.dominio;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport org.junit.jupiter.params.ParameterizedTest;\r\nimport org.junit.jupiter.params.provider.CsvSource;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass VehiculoTest {\r\n\r\n\tprivate static final String MARCA = \"Renault\";\r\n\tprivate static final String MODELO = \"Megane\";\r\n\tprivate static final String MATRICULA = \"1111BBB\";\r\n\r\n\tprivate final Vehiculo vehiculo = new Vehiculo(MARCA, MODELO, MATRICULA);\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con marca: {0}, modelo: {1}, matrícula: {2} crea correctamente el vehículo\")\r\n\t@CsvSource({\"Seat, León, 1234BCD\", \"Land Rover, León, 1234BCD\", \"KIA, León, 1234BCD\", \"Rolls-Royce, León, 1234BCD\", \"SsangYong, León, 1234BCD\",\r\n\t\t\t\"Seat, KK, 1234BCD\", \"Seat, 123, 1234BCD\", \"Seat, León, 1111BBB\", \"Seat, León, 9999ZZZ\"})\r\n\tvoid constructorMarcaValidaModeloValidoMatrivaValidaCreaVehiculoCorrectamente(String marca, String modelo, String matricula) {\r\n\t\tVehiculo vehiculo = new Vehiculo(marca, modelo, matricula);\r\n\t\tassertEquals(marca, vehiculo.marca());\r\n\t\tassertEquals(modelo, vehiculo.modelo());\r\n\t\tassertEquals(matricula, vehiculo.matricula());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorMarcaNulaModeloValidoMatrivaValidaLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Vehiculo(null, MODELO, MATRICULA));\r\n\t\tassertEquals(\"La marca no puede ser nula.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con marca no válida: {0} lanza excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"AA-BB\", \"aa\", \"aa bb\"})\r\n\tvoid constructorMarcaNoValidaModeloValidoMatrivaValidaLanzaExcepcion(String marca) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Vehiculo(marca, MODELO, MATRICULA));\r\n\t\tassertEquals(\"La marca no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorMarcaValidaModeloNuloMatrivaValidaLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Vehiculo(MARCA, null, MATRICULA));\r\n\t\tassertEquals(\"El modelo no puede ser nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con un modelo no válido: {0} lanza excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'    '\"})\r\n\tvoid constructorMarcaValidaModeloNoValidoMatrivaValidaLanzaExcepcion(String modelo) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Vehiculo(MARCA, modelo, MATRICULA));\r\n\t\tassertEquals(\"El modelo no puede estar en blanco.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorMarcaValidaModeloValidoMatrivaNulaLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Vehiculo(MARCA, MODELO, null));\r\n\t\tassertEquals(\"La matrícula no puede ser nula.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con una matrícula no válida: {0} lanza excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"123BCD\", \"12345BCD\", \"1234ABC\", \"BCD1234\"})\r\n\tvoid constructorMarcaValidaModeloValidoMatrivaNoValidaLanzaExcepcion(String matricula) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class,() -> new Vehiculo(MARCA,MODELO,matricula));\r\n\t\tassertEquals(\"La matrícula no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid getVehiculoMatriculaValidaDevuelveVehiculoConDichaMatricula() {\r\n\t\tVehiculo vehiculo1 = Vehiculo.get(MATRICULA);\r\n\t\tassertEquals(vehiculo , vehiculo1);\r\n\t}\r\n\r\n\t@Test\r\n\tvoid getVehiculoMatriculaNulaLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> Vehiculo.get(null));\r\n\t\tassertEquals(\"La matrícula no puede ser nula.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos a getVehiculo con una matrícula no válida: {0} lanza excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"123BCD\", \"12345BCD\", \"1234ABC\", \"BCD1234\"})\r\n\tvoid getVehiculoMatriculaNoValidaLanzaExcepcion(String matricula) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class,() -> Vehiculo.get(matricula));\r\n\t\tassertEquals(\"La matrícula no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid equalsHashCodeSeBasanSoloEnMatricula() {\r\n\t\tassertEquals(vehiculo, Vehiculo.get(\"1111BBB\"));\r\n\t\tassertEquals(vehiculo.hashCode(), Vehiculo.get(\"1111BBB\").hashCode());\r\n\t\tassertNotEquals(Vehiculo.get(\"1234BCD\"), Vehiculo.get(\"1111BBB\"));\r\n\t\tassertNotEquals(Vehiculo.get(\"1234BCD\").hashCode(), Vehiculo.get(\"1111BBB\").hashCode());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid toStringDevuelveLaCadenaEsperada() {\r\n\t\tassertEquals(String.format(\"%s %s - %s\", MARCA, MODELO, MATRICULA), vehiculo.toString());\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/VehiculoTest.java b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/VehiculoTest.java
+--- a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/VehiculoTest.java	(revision 96941b6b68645a139763dd48a5c1af069a408c45)
++++ b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/VehiculoTest.java	(date 1743414896000)
+@@ -7,11 +7,11 @@
+ import static org.junit.jupiter.api.Assertions.*;
+ 
+ class VehiculoTest {
+-
++	
+ 	private static final String MARCA = "Renault";
+ 	private static final String MODELO = "Megane";
+ 	private static final String MATRICULA = "1111BBB";
+-
++	
+ 	private final Vehiculo vehiculo = new Vehiculo(MARCA, MODELO, MATRICULA);
+ 
+ 	@ParameterizedTest(name = "Cuando llamamos al constructor con marca: {0}, modelo: {1}, matrícula: {2} crea correctamente el vehículo")
+@@ -29,7 +29,7 @@
+ 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Vehiculo(null, MODELO, MATRICULA));
+ 		assertEquals("La marca no puede ser nula.", npe.getMessage());
+ 	}
+-
++	
+ 	@ParameterizedTest(name = "Cuando llamamos al constructor con marca no válida: {0} lanza excepción")
+ 	@CsvSource({"''", "' '", "'   '", "AA-BB", "aa", "aa bb"})
+ 	void constructorMarcaNoValidaModeloValidoMatrivaValidaLanzaExcepcion(String marca) {
+@@ -62,7 +62,7 @@
+ 		IllegalArgumentException iae = assertThrows(IllegalArgumentException.class,() -> new Vehiculo(MARCA,MODELO,matricula));
+ 		assertEquals("La matrícula no tiene un formato válido.", iae.getMessage());
+ 	}
+-
++	
+ 	@Test
+ 	void getVehiculoMatriculaValidaDevuelveVehiculoConDichaMatricula() {
+ 		Vehiculo vehiculo1 = Vehiculo.get(MATRICULA);
+@@ -89,7 +89,7 @@
+ 		assertNotEquals(Vehiculo.get("1234BCD"), Vehiculo.get("1111BBB"));
+ 		assertNotEquals(Vehiculo.get("1234BCD").hashCode(), Vehiculo.get("1111BBB").hashCode());
+ 	}
+-
++	
+ 	@Test
+ 	void toStringDevuelveLaCadenaEsperada() {
+ 		assertEquals(String.format("%s %s - %s", MARCA, MODELO, MATRICULA), vehiculo.toString());
+Index: src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/MecanicoTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.iesalandalus.programacion.tallermecanico.modelo.dominio;\r\n\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;\r\nimport org.junit.jupiter.api.AfterEach;\r\nimport org.junit.jupiter.api.BeforeAll;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.junit.jupiter.params.ParameterizedTest;\r\nimport org.junit.jupiter.params.provider.CsvSource;\r\nimport org.mockito.MockedConstruction;\r\n\r\nimport java.time.LocalDate;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\nimport static org.mockito.Mockito.*;\r\n\r\nclass MecanicoTest {\r\n\r\n    private static Cliente cliente;\r\n    private static Vehiculo vehiculo;\r\n    private static LocalDate hoy;\r\n    private static LocalDate ayer;\r\n    private static LocalDate manana;\r\n    private static LocalDate semanaPasada;\r\n\r\n    private Mecanico mecanico;\r\n\r\n    private MockedConstruction<Cliente> controladorCreacionMockCliente;\r\n\r\n\r\n    @BeforeAll\r\n    static void setup() {\r\n        hoy = LocalDate.now();\r\n        ayer = hoy.minusDays(1);\r\n        manana = hoy.plusDays(1);\r\n        semanaPasada = hoy.minusDays(7);\r\n    }\r\n\r\n    @BeforeEach\r\n    void init() {\r\n        creaComportamientoCliente();\r\n        creaComportamientoVehiculo();\r\n        mecanico = new Mecanico(cliente, vehiculo, ayer);\r\n    }\r\n\r\n    @AfterEach\r\n    void close() {\r\n        controladorCreacionMockCliente.close();\r\n    }\r\n\r\n    private void creaComportamientoVehiculo() {\r\n        vehiculo = mock();\r\n        when(vehiculo.marca()).thenReturn(\"Seat\");\r\n        when(vehiculo.modelo()).thenReturn(\"León\");\r\n        when(vehiculo.matricula()).thenReturn(\"1234BCD\");\r\n    }\r\n\r\n    private void creaComportamientoCliente() {\r\n        cliente = mock();\r\n        controladorCreacionMockCliente = mockConstruction(Cliente.class);\r\n        when(cliente.getNombre()).thenReturn(\"Bob Esponja\");\r\n        when(cliente.getDni()).thenReturn(\"11223344B\");\r\n        when(cliente.getTelefono()).thenReturn(\"950112233\");\r\n    }\r\n\r\n    @Test\r\n    void constructorClienteValidoVehiculoValidoFechaInicioValidaCreaMecanicoCorrectamente() {\r\n        assertEquals(cliente, mecanico.getCliente());\r\n        assertSame(cliente, mecanico.getCliente());\r\n        assertEquals(vehiculo, mecanico.getVehiculo());\r\n        assertSame(vehiculo, mecanico.getVehiculo());\r\n        assertEquals(ayer, mecanico.getFechaInicio());\r\n        assertNull(mecanico.getFechaFin());\r\n        assertEquals(0, mecanico.getHoras());\r\n        assertEquals(0, mecanico.getPrecioMaterial());\r\n        assertEquals(0, mecanico.getPrecio());\r\n        Mecanico mecanicoSemanaPasada = new Mecanico(cliente, vehiculo, semanaPasada);\r\n        assertEquals(semanaPasada, mecanicoSemanaPasada.getFechaInicio());\r\n    }\r\n\r\n    @Test\r\n    void constructorClienteNuloVehiculoValidoFechaInicioValidaLanzaExcepcion() {\r\n        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Mecanico(null, vehiculo, hoy));\r\n        assertEquals(\"El cliente no puede ser nulo.\", npe.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void constructorClienteValidoVehiculoNuloFechaInicioValidaLanzaExcepcion() {\r\n        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Mecanico(cliente, null, hoy));\r\n        assertEquals(\"El vehículo no puede ser nulo.\", npe.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void constructorClienteValidoVehiculoValidoFechaInicioNulaLanzaExcepcion() {\r\n        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Mecanico(cliente, vehiculo, null));\r\n        assertEquals(\"La fecha de inicio no puede ser nula.\", npe.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void constructorClienteValidoVehiculoValidoFechaInicioNoValidaLanzaExcepcion() {\r\n        IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Mecanico(cliente, vehiculo, manana));\r\n        assertEquals(\"La fecha de inicio no puede ser futura.\", iae.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void constructorMecanicoValidoCopiaMecanicoCorrectamente() {\r\n        assertDoesNotThrow(() -> mecanico.anadirHoras(5));\r\n        assertDoesNotThrow(() -> mecanico.anadirPrecioMaterial(100));\r\n        assertDoesNotThrow(() -> mecanico.cerrar(hoy));\r\n        Mecanico copiaMecanico = new Mecanico(mecanico);\r\n        assertNotSame(cliente, copiaMecanico.getCliente());\r\n        assertSame(vehiculo, copiaMecanico.getVehiculo());\r\n        assertEquals(ayer, copiaMecanico.getFechaInicio());\r\n        assertEquals(hoy, copiaMecanico.getFechaFin());\r\n        assertEquals(5, copiaMecanico.getHoras());\r\n        assertEquals(100, copiaMecanico.getPrecioMaterial());\r\n    }\r\n\r\n    @Test\r\n    void constructorMecanicoNuloLanzaExcepcion() {\r\n        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Mecanico(null));\r\n        assertEquals(\"El trabajo no puede ser nulo.\", npe.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void anadirHorasHorasValidasSumaHorasCorrectamente() {\r\n        assertDoesNotThrow(() -> mecanico.anadirHoras(5));\r\n        assertEquals(5, mecanico.getHoras());\r\n        assertDoesNotThrow(() -> mecanico.anadirHoras(5));\r\n        assertEquals(10, mecanico.getHoras());\r\n    }\r\n\r\n    @Test\r\n    void anadirHorasHorasNoValidasLanzaExcepcion() {\r\n        IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> mecanico.anadirHoras(0));\r\n        assertEquals(\"Las horas a añadir deben ser mayores que cero.\", iae.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void anadirHorasMecanicoCerradoLanzaExcepcion() {\r\n        assertDoesNotThrow(() -> mecanico.cerrar(hoy));\r\n        TallerMecanicoExcepcion tme = assertThrows(TallerMecanicoExcepcion.class, () -> mecanico.anadirHoras(5));\r\n        assertEquals(\"No se puede añadir horas, ya que el trabajo está cerrado.\", tme.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void anadirPrecioMaterialPrecioMaterialValidoSumaPrecioMaterialCorrectamente() {\r\n        assertDoesNotThrow(() -> mecanico.anadirPrecioMaterial(100));\r\n        assertEquals(100, mecanico.getPrecioMaterial());\r\n        assertDoesNotThrow(() -> mecanico.anadirPrecioMaterial(100));\r\n        assertEquals(200, mecanico.getPrecioMaterial());\r\n    }\r\n\r\n    @Test\r\n    void anadirPrecioMaterialPrecioMaterialNoValidoLanzaExcepcion() {\r\n        IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> mecanico.anadirPrecioMaterial(0));\r\n        assertEquals(\"El precio del material a añadir debe ser mayor que cero.\", iae.getMessage());\r\n    }\r\n\r\n    @Test\r\n    void anadirPrecioMaterialMecanicoCerradaLanzaExcepcion() {\r\n        assertDoesNotThrow(() -> mecanico.cerrar(hoy));\r\n        TallerMecanicoExcepcion tme = assertThrows(TallerMecanicoExcepcion.class, () -> mecanico.anadirPrecioMaterial(100));\r\n        assertEquals(\"No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.\", tme.getMessage());\r\n    }\r\n\r\n    @ParameterizedTest(name = \"Cuando llamamos a getPrecio y se han añadido {0} horas y {1} precio de material calcula el precio como {2}\")\r\n    @CsvSource({\"0, 1, 1, 31.5\", \"1, 1, 1, 41.5\", \"5, 1, 1, 81.5\", \"0, 2, 2, 63.0\", \"1, 2, 2, 73.0\", \"5, 2, 2, 113.0\",\r\n            \"0, 5, 5, 157.5\", \"1, 5, 5, 167.5\", \"5, 5, 5, 207.5\", \"0, 10, 10, 315.0\", \"1, 10, 10, 325.0\", \"5, 10, 10, 365.0\",\r\n            \"0, 10, 100, 450.0\", \"1, 10, 100, 460.0\", \"5, 10, 100, 500.0\"})\r\n    void getPrecioCalculaCorrectamentePrecio(int dias, int horas, float precioMaterial, float precio) {\r\n        Mecanico mecanicoSemanaPAsada = new Mecanico(cliente, vehiculo, semanaPasada);\r\n        assertDoesNotThrow(() -> mecanicoSemanaPAsada.anadirHoras(horas));\r\n        assertDoesNotThrow(() -> mecanicoSemanaPAsada.anadirPrecioMaterial(precioMaterial));\r\n        LocalDate fechaFin = semanaPasada.plusDays(dias);\r\n        assertDoesNotThrow(() -> mecanicoSemanaPAsada.cerrar(fechaFin));\r\n        assertEquals(precio, mecanicoSemanaPAsada.getPrecio());\r\n    }\r\n\r\n    @Test\r\n    void equalsHashCodeSeBasanSoloEnClienteVehiculoFechaInicio() {\r\n        Mecanico otroMecanico = new Mecanico(cliente, vehiculo, ayer);\r\n        assertEquals(mecanico, otroMecanico);\r\n        assertEquals(mecanico.hashCode(), otroMecanico.hashCode());\r\n        assertDoesNotThrow(() -> otroMecanico.cerrar(hoy));\r\n        assertEquals(mecanico, otroMecanico);\r\n        assertEquals(mecanico.hashCode(), otroMecanico.hashCode());\r\n    }\r\n\r\n    @Test\r\n    void toStringDevuelveLaCadenaEsperada() {\r\n        String cadenaCliente = \"Bob Esponja - 11223344B (950112233)\";\r\n        String caenaVehiculo = \"Seat León - 1234BCD\";\r\n        when(cliente.toString()).thenReturn(cadenaCliente);\r\n        when(vehiculo.toString()).thenReturn(caenaVehiculo);\r\n        String cadenaAyer = ayer.format(Trabajo.FORMATO_FECHA);\r\n        String cadenaHoy = hoy.format(Trabajo.FORMATO_FECHA);\r\n        String cadena = String.format(\"Mecánico -> %s - %s (%s - ): 0 horas, 0,00 € en material\", cadenaCliente, caenaVehiculo, cadenaAyer);\r\n        assertEquals(cadena, mecanico.toString());\r\n        assertDoesNotThrow(() -> mecanico.cerrar(hoy));\r\n        cadena = String.format(\"Mecánico -> %s - %s (%s - %s): 0 horas, 0,00 € en material, 10,00 € total\", cadenaCliente, caenaVehiculo, cadenaAyer, cadenaHoy);\r\n        assertEquals(cadena, mecanico.toString());\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/MecanicoTest.java b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/MecanicoTest.java
+--- a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/MecanicoTest.java	(revision 96941b6b68645a139763dd48a5c1af069a408c45)
++++ b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/MecanicoTest.java	(date 1743414896000)
+@@ -202,4 +202,4 @@
+         assertEquals(cadena, mecanico.toString());
+     }
+ 
+-}
++}
+\ No newline at end of file
+Index: src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/ClienteTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.iesalandalus.programacion.tallermecanico.modelo.dominio;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport org.junit.jupiter.params.ParameterizedTest;\r\nimport org.junit.jupiter.params.provider.CsvSource;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass ClienteTest {\r\n\r\n\tprivate static final String NOMBRE = \"Patricio Estrella\";\r\n\tprivate static final String DNI = \"11111111H\";\r\n\tprivate static final String TELEFONO = \"950111111\";\r\n\r\n\tprivate final Cliente cliente = new Cliente(NOMBRE, DNI, TELEFONO);\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con nombre: {0}, dni: {1}, teléfono: {2} crea el cliente correctamente\")\r\n\t@CsvSource({\"José, 11223344B, 123456789\", \"José Ramón, 11223344B, 123456789\", \"José Ramón Jiménez, 11223344B, 123456789\", \"José Ramón Jiménez Reyes, 11223344B, 123456789\",\r\n\t\t\t\"José, 11111111H, 123456789\", \"José, 11223344B, 111111111\", \"José, 11223344B, 999999999\"})\r\n\tvoid constructorNombreValidoDniValidoTelefonoValidoCreaClienteCorrectamente(String nombre, String dni, String telefono) {\r\n\t\tCliente cliente = new Cliente(nombre, dni, telefono);\r\n\t\tassertEquals(nombre, cliente.getNombre());\r\n\t\tassertEquals(dni, cliente.getDni());\r\n\t\tassertEquals(telefono, cliente.getTelefono());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorNombreNuloDniValidoTelefonoValidoLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(null, DNI, TELEFONO));\r\n\t\tassertEquals(\"El nombre no puede ser nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con un nombre no válido: {0} lanza una excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"bob esponja\", \"BOB ESPONJA\", \"Bob  Esponja\"})\r\n\tvoid constructorNombreNoValidoDniValidoTelefonoValidoLanzaExcepcion(String nombre) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(nombre, DNI, TELEFONO));\r\n\t\tassertEquals(\"El nombre no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructoNombreValidoDniNuloTelefonoValidoLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(NOMBRE, null, TELEFONO));\r\n\t\tassertEquals(\"El DNI no puede ser nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con un dni no válido: {0} lanza una excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"1234567A\", \"123456789A\", \"12345678\"})\r\n\tvoid constructorNombreValidoDniNoValidoTelefonoValidoLanzaExcepcion(String dni) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(NOMBRE, dni, TELEFONO));\r\n\t\tassertEquals(\"El DNI no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con un dni cuya letra no es válida: {0} lanza una excepción\")\r\n\t@CsvSource({\"11111111V\", \"11111111L\"})\r\n\tvoid constructorNombreValidoLetraDniNoValidaTelefonoValidoLanzaExcepcion(String dni) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(NOMBRE, dni, TELEFONO));\r\n\t\tassertEquals(\"La letra del DNI no es correcta.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorNombreValidoDniValidoTelefonoNuloLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(NOMBRE, DNI, null));\r\n\t\tassertEquals(\"El teléfono no puede ser nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos al constructor con un teléfono no válido {0} lanza una excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"12345678\", \"1234567890\", \"abcdefghi\", \"ABCDEFGHI\"})\r\n\tvoid constructorNombreValidoDniValidoTelefonoNoValidoLanzaExcepcion(String telefono) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(NOMBRE, DNI, telefono));\r\n\t\tassertEquals(\"El teléfono no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constrctorClienteValidoCopiaClienteCorrectamente() {\r\n\t\tCliente clienteCopia = new Cliente(cliente);\r\n\t\tassertEquals(cliente, clienteCopia);\r\n\t\tassertNotSame(cliente, clienteCopia);\r\n\t}\r\n\r\n\t@Test\r\n\tvoid constructorClienteNuloLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(null));\r\n\t\tassertEquals(\"No es posible copiar un cliente nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid getClienteDniValidoDevuelveClienteConDichoDni() {\r\n\t\tCliente cliente1 = Cliente.get(DNI);\r\n\t\tassertEquals(cliente, cliente1);\r\n\t}\r\n\r\n\t@Test\r\n\tvoid getClienteDniNuloLanzaExcepcion() {\r\n\t\tNullPointerException npe = assertThrows(NullPointerException.class, () -> Cliente.get(null));\r\n\t\tassertEquals(\"El DNI no puede ser nulo.\", npe.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos a getClienteConDni con un dni no válido: {0} lanza una excepción\")\r\n\t@CsvSource({\"''\", \"' '\", \"'   '\", \"1234567A\", \"123456789A\", \"12345678\"})\r\n\tvoid getClienteDniNoValidoLanzaExcepcion(String dni) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> Cliente.get(dni));\r\n\t\tassertEquals(\"El DNI no tiene un formato válido.\", iae.getMessage());\r\n\t}\r\n\r\n\t@ParameterizedTest(name = \"Cuando llamamos a getClienteConDni con un dni cuya letra no es válida: {0} lanza una excepción\")\r\n\t@CsvSource({\"11111111V\", \"11111111L\"})\r\n\tvoid getClienteLetraDniNoValidaLanzaExcepcion(String dni) {\r\n\t\tIllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> Cliente.get(dni));\r\n\t\tassertEquals(\"La letra del DNI no es correcta.\", iae.getMessage());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid equalsHashCodeSeBasanSoloEnDni() {\r\n\t\tassertEquals(cliente, Cliente.get(\"11111111H\"));\r\n\t\tassertEquals(cliente.hashCode(), Cliente.get(\"11111111H\").hashCode());\r\n\t\tassertNotEquals(Cliente.get(\"11223344B\"), Cliente.get(\"11111111H\"));\r\n\t\tassertNotEquals(Cliente.get(\"11223344B\").hashCode(), Cliente.get(\"11111111H\").hashCode());\r\n\t}\r\n\r\n\t@Test\r\n\tvoid toStringDevuelveLaCadenaEsperada() {\r\n\t\tassertEquals(String.format(\"%s - %s (%s)\", NOMBRE, DNI, TELEFONO), cliente.toString());\r\n\t}\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/ClienteTest.java b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/ClienteTest.java
+--- a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/ClienteTest.java	(revision 96941b6b68645a139763dd48a5c1af069a408c45)
++++ b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/ClienteTest.java	(date 1743414896000)
+@@ -11,7 +11,7 @@
+ 	private static final String NOMBRE = "Patricio Estrella";
+ 	private static final String DNI = "11111111H";
+ 	private static final String TELEFONO = "950111111";
+-
++	
+ 	private final Cliente cliente = new Cliente(NOMBRE, DNI, TELEFONO);
+ 
+ 	@ParameterizedTest(name = "Cuando llamamos al constructor con nombre: {0}, dni: {1}, teléfono: {2} crea el cliente correctamente")
+@@ -62,14 +62,14 @@
+ 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(NOMBRE, DNI, null));
+ 		assertEquals("El teléfono no puede ser nulo.", npe.getMessage());
+ 	}
+-
++	
+ 	@ParameterizedTest(name = "Cuando llamamos al constructor con un teléfono no válido {0} lanza una excepción")
+ 	@CsvSource({"''", "' '", "'   '", "12345678", "1234567890", "abcdefghi", "ABCDEFGHI"})
+ 	void constructorNombreValidoDniValidoTelefonoNoValidoLanzaExcepcion(String telefono) {
+ 		IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Cliente(NOMBRE, DNI, telefono));
+ 		assertEquals("El teléfono no tiene un formato válido.", iae.getMessage());
+ 	}
+-
++	
+ 	@Test
+ 	void constrctorClienteValidoCopiaClienteCorrectamente() {
+ 		Cliente clienteCopia = new Cliente(cliente);
+@@ -82,7 +82,7 @@
+ 		NullPointerException npe = assertThrows(NullPointerException.class, () -> new Cliente(null));
+ 		assertEquals("No es posible copiar un cliente nulo.", npe.getMessage());
+ 	}
+-
++	
+ 	@Test
+ 	void getClienteDniValidoDevuelveClienteConDichoDni() {
+ 		Cliente cliente1 = Cliente.get(DNI);
+@@ -116,10 +116,10 @@
+ 		assertNotEquals(Cliente.get("11223344B"), Cliente.get("11111111H"));
+ 		assertNotEquals(Cliente.get("11223344B").hashCode(), Cliente.get("11111111H").hashCode());
+ 	}
+-
++	
+ 	@Test
+ 	void toStringDevuelveLaCadenaEsperada() {
+ 		assertEquals(String.format("%s - %s (%s)", NOMBRE, DNI, TELEFONO), cliente.toString());
+ 	}
+ 
+-}
+\ No newline at end of file
++}
+Index: src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.iesalandalus.programacion.tallermecanico.modelo;\r\n\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.negocio.*;\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Clientes;\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Trabajos;\r\nimport org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Vehiculos;\r\nimport org.junit.jupiter.api.AfterEach;\r\nimport org.junit.jupiter.api.BeforeAll;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.mockito.*;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\nimport static org.mockito.Mockito.*;\r\n\r\nclass ModeloTest {\r\n\r\n    @Mock\r\n    private static IClientes clientes;\r\n    @Mock\r\n    private static IVehiculos vehiculos;\r\n    @Mock\r\n    private static ITrabajos trabajos;\r\n    @InjectMocks\r\n    private Modelo modelo = FabricaModelo.CASCADA.crear(FabricaFuenteDatos.MEMORIA);\r\n\r\n    private static Cliente cliente;\r\n    private static Vehiculo vehiculo;\r\n    private static Revision revision;\r\n    private static Mecanico mecanico;\r\n\r\n    private AutoCloseable procesadorAnotaciones;\r\n    private MockedConstruction<Cliente> controladorCreacionMockCliente;\r\n    private MockedConstruction<Clientes> controladorCreacionMockClientes;\r\n    private MockedConstruction<Vehiculos> controladorCreacionMockVehiculos;\r\n    private MockedConstruction<Revision> controladorCreacionMockRevision;\r\n    private MockedConstruction<Mecanico> controladorCreacionMockMecanico;\r\n    private MockedConstruction<Trabajos> controladorCreacionMockTrabajos;\r\n\r\n\r\n    @BeforeAll\r\n    static void setup() {\r\n        cliente = mock();\r\n        when(cliente.getNombre()).thenReturn(\"Bob Esponja\");\r\n        when(cliente.getDni()).thenReturn(\"11223344B\");\r\n        when(cliente.getTelefono()).thenReturn(\"950112233\");\r\n        vehiculo = mock();\r\n        when(vehiculo.marca()).thenReturn(\"Seat\");\r\n        when(vehiculo.modelo()).thenReturn(\"León\");\r\n        when(vehiculo.matricula()).thenReturn(\"1234BCD\");\r\n        revision = mock();\r\n        when(revision.getCliente()).thenReturn(cliente);\r\n        when(revision.getVehiculo()).thenReturn(vehiculo);\r\n        when(revision.getFechaInicio()).thenReturn(LocalDate.now().minusDays(1));\r\n        mecanico = mock();\r\n        when(mecanico.getCliente()).thenReturn(cliente);\r\n        when(mecanico.getVehiculo()).thenReturn(vehiculo);\r\n        when(mecanico.getFechaInicio()).thenReturn(LocalDate.now().minusDays(1));\r\n    }\r\n\r\n    @BeforeEach\r\n    void init() {\r\n        controladorCreacionMockCliente = mockConstruction(Cliente.class);\r\n        controladorCreacionMockClientes = mockConstruction(Clientes.class);\r\n        controladorCreacionMockVehiculos = mockConstruction(Vehiculos.class);\r\n        controladorCreacionMockRevision = mockConstruction(Revision.class);\r\n        controladorCreacionMockMecanico = mockConstruction(Mecanico.class);\r\n        controladorCreacionMockTrabajos = mockConstruction(Trabajos.class);\r\n        procesadorAnotaciones = MockitoAnnotations.openMocks(this);\r\n    }\r\n\r\n    @AfterEach\r\n    void close() throws Exception {\r\n        procesadorAnotaciones.close();\r\n        controladorCreacionMockCliente.close();\r\n        controladorCreacionMockClientes.close();\r\n        controladorCreacionMockVehiculos.close();\r\n        controladorCreacionMockRevision.close();\r\n        controladorCreacionMockMecanico.close();\r\n        controladorCreacionMockTrabajos.close();\r\n    }\r\n\r\n    @Test\r\n    void comenzarNoHaceNada() {\r\n        assertDoesNotThrow(() -> modelo.comenzar());\r\n    }\r\n\r\n    @Test\r\n    void terminarNoHaceNada() {\r\n        assertDoesNotThrow(() -> modelo.terminar());\r\n    }\r\n\r\n    @Test\r\n    void insertarClienteLlamaClientesInsertar() {\r\n        assertDoesNotThrow(() -> modelo.insertar(cliente));\r\n        assertDoesNotThrow(() -> verify(clientes).insertar(any(Cliente.class)));\r\n        assertDoesNotThrow(() -> verify(clientes, times(0)).insertar(cliente));\r\n    }\r\n\r\n    @Test\r\n    void insertarVehiculoLlamaVehiculosInsertar() {\r\n        assertDoesNotThrow(() -> modelo.insertar(vehiculo));\r\n        assertDoesNotThrow(() -> verify(vehiculos).insertar(vehiculo));\r\n    }\r\n\r\n    @Test\r\n    void insertarTrabajoRevisionLlamaClientesBuscarVehiculosBuscarTrabajosInsertar() {\r\n        InOrder orden = inOrder(clientes, vehiculos, trabajos);\r\n        when(clientes.buscar(cliente)).thenReturn(cliente);\r\n        when(vehiculos.buscar(vehiculo)).thenReturn(vehiculo);\r\n        assertDoesNotThrow(() -> modelo.insertar(revision));\r\n        orden.verify(clientes).buscar(cliente);\r\n        orden.verify(vehiculos).buscar(vehiculo);\r\n        assertDoesNotThrow(() -> orden.verify(trabajos).insertar(any(Trabajo.class)));\r\n        assertDoesNotThrow(() -> verify(trabajos, times(0)).insertar(revision));\r\n    }\r\n\r\n    @Test\r\n    void insertarTrabajoMecanicoLlamaClientesBuscarVehiculosBuscarTrabajosInsertar() {\r\n        InOrder orden = inOrder(clientes, vehiculos, trabajos);\r\n        when(clientes.buscar(cliente)).thenReturn(cliente);\r\n        when(vehiculos.buscar(vehiculo)).thenReturn(vehiculo);\r\n        assertDoesNotThrow(() -> modelo.insertar(mecanico));\r\n        orden.verify(clientes).buscar(cliente);\r\n        orden.verify(vehiculos).buscar(vehiculo);\r\n        assertDoesNotThrow(() -> orden.verify(trabajos).insertar(any(Trabajo.class)));\r\n        assertDoesNotThrow(() -> verify(trabajos, times(0)).insertar(mecanico));\r\n    }\r\n\r\n    @Test\r\n    void buscarClienteLlamaClientesBuscar() {\r\n        assertDoesNotThrow(() -> modelo.insertar(cliente));\r\n        when(clientes.buscar(cliente)).thenReturn(cliente);\r\n        Cliente clienteEncontrado = modelo.buscar(cliente);\r\n        verify(clientes).buscar(cliente);\r\n        assertNotSame(cliente, clienteEncontrado);\r\n    }\r\n\r\n    @Test\r\n    void buscarVehiculoLlamaVehiculosBuscar() {\r\n        assertDoesNotThrow(() -> modelo.insertar(vehiculo));\r\n        when(vehiculos.buscar(vehiculo)).thenReturn(vehiculo);\r\n        modelo.buscar(vehiculo);\r\n        verify(vehiculos).buscar(vehiculo);\r\n    }\r\n\r\n    @Test\r\n    void buscarTrabajoLlamaTrabajosBuscar() {\r\n        assertDoesNotThrow(() -> modelo.insertar(revision));\r\n        when(trabajos.buscar(revision)).thenReturn(revision);\r\n        Trabajo trabajoEncontrada = modelo.buscar(revision);\r\n        verify(trabajos).buscar(revision);\r\n        assertNotSame(revision, trabajoEncontrada);\r\n    }\r\n\r\n    @Test\r\n    void modificarClienteLlamaClientesModificar() {\r\n        assertDoesNotThrow(() -> modelo.modificar(cliente, \"Patricio Estrella\", \"950123456\"));\r\n        assertDoesNotThrow(() -> verify(clientes).modificar(cliente, \"Patricio Estrella\", \"950123456\"));\r\n    }\r\n\r\n    @Test\r\n    void anadirHorasLlamaTrabajosAnadirHoras() {\r\n        assertDoesNotThrow(() -> modelo.anadirHoras(revision, 10));\r\n        assertDoesNotThrow(() -> verify(trabajos).anadirHoras(revision, 10));\r\n    }\r\n\r\n    @Test\r\n    void anadirPrecioMateriaLlamaTrabajosAnadirPrecioMaterial() {\r\n        assertDoesNotThrow(() -> modelo.anadirPrecioMaterial(revision, 100f));\r\n        assertDoesNotThrow(() -> verify(trabajos).anadirPrecioMaterial(revision, 100f));\r\n    }\r\n\r\n    @Test\r\n    void cerrarLlamaTrabajosCerrar() {\r\n        assertDoesNotThrow(() -> modelo.cerrar(revision, LocalDate.now()));\r\n        assertDoesNotThrow(() -> verify(trabajos).cerrar(revision, LocalDate.now()));\r\n    }\r\n\r\n    @Test\r\n    void borrarClienteLlamaTrabajosGetClienteTrabajosBorrarClientesBorrar() {\r\n        simularClientesConTrabajos();\r\n        InOrder orden = inOrder(clientes, trabajos);\r\n        assertDoesNotThrow(() -> modelo.borrar(cliente));\r\n        orden.verify(trabajos).get(cliente);\r\n        for (Trabajo trabajo : trabajos.get(cliente)) {\r\n            assertDoesNotThrow(() -> orden.verify(trabajos).borrar(trabajo));\r\n        }\r\n        assertDoesNotThrow(() -> orden.verify(clientes).borrar(cliente));\r\n    }\r\n\r\n    private void simularClientesConTrabajos() {\r\n        when(trabajos.get(cliente)).thenReturn(new ArrayList<>(List.of(mock(), mock())));\r\n    }\r\n\r\n    @Test\r\n    void borrarVehiculoLlamaTrabajosGetVehiculoTrabajosBorrarVehiculosBorrar() {\r\n        simularVehiculosConTrabajos();\r\n        InOrder orden = inOrder(vehiculos, trabajos);\r\n        assertDoesNotThrow(() -> modelo.borrar(vehiculo));\r\n        orden.verify(trabajos).get(vehiculo);\r\n        for (Trabajo trabajo : trabajos.get(vehiculo)) {\r\n            assertDoesNotThrow(() -> orden.verify(trabajos).borrar(trabajo));\r\n        }\r\n        assertDoesNotThrow(() -> orden.verify(vehiculos).borrar(vehiculo));\r\n    }\r\n\r\n    private void simularVehiculosConTrabajos() {\r\n        when(trabajos.get(vehiculo)).thenReturn(new ArrayList<>(List.of(mock(), mock())));\r\n    }\r\n\r\n    @Test\r\n    void borrarTrabajoLlamaTrabajosBorrar() {\r\n        assertDoesNotThrow(() -> modelo.borrar(revision));\r\n        assertDoesNotThrow(() -> verify(trabajos).borrar(revision));\r\n    }\r\n\r\n    @Test\r\n    void getClientesLlamaClientesGet() {\r\n        when(clientes.get()).thenReturn(new ArrayList<>(List.of(cliente)));\r\n        List<Cliente> clientesExistentes = modelo.getClientes();\r\n        verify(clientes).get();\r\n        assertNotSame(cliente, clientesExistentes.get(0));\r\n    }\r\n\r\n    @Test\r\n    void getVehiculosLlamaVehiculosGet() {\r\n        when(vehiculos.get()).thenReturn(new ArrayList<>(List.of(vehiculo)));\r\n        List<Vehiculo> vehiculosExistentes = modelo.getVehiculos();\r\n        verify(vehiculos).get();\r\n        assertSame(vehiculo, vehiculosExistentes.get(0));\r\n    }\r\n\r\n    @Test\r\n    void getTrabajosLlamaTrabajosGet() {\r\n        when(trabajos.get()).thenReturn(new ArrayList<>(List.of(revision)));\r\n        List<Trabajo> trabajosExistentes = modelo.getTrabajos();\r\n        verify(trabajos).get();\r\n        assertNotSame(revision, trabajosExistentes.get(0));\r\n    }\r\n\r\n    @Test\r\n    void getTrabajosClienteLlamaTrabajosGetCliente() {\r\n        when(trabajos.get(cliente)).thenReturn(new ArrayList<>(List.of(revision)));\r\n        List<Trabajo> trabajosCliente = modelo.getTrabajos(cliente);\r\n        verify(trabajos).get(cliente);\r\n        assertNotSame(revision,trabajosCliente.get(0));\r\n    }\r\n\r\n    @Test\r\n    void getTrabajosVehiculoLlamaTrabajosGetVehiculo() {\r\n        when(trabajos.get(vehiculo)).thenReturn(new ArrayList<>(List.of(revision)));\r\n        List<Trabajo> trabajosVehiculo = modelo.getTrabajos(vehiculo);\r\n        verify(trabajos).get(vehiculo);\r\n        assertNotSame(revision,trabajosVehiculo.get(0));\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java
+--- a/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java	(revision 96941b6b68645a139763dd48a5c1af069a408c45)
++++ b/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java	(date 1743414896000)
+@@ -1,10 +1,13 @@
+ package org.iesalandalus.programacion.tallermecanico.modelo;
+ 
+ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
+-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.*;
+-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Clientes;
+-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Trabajos;
+-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Vehiculos;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.Clientes;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.Trabajos;
++import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.Vehiculos;
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeAll;
+ import org.junit.jupiter.api.BeforeEach;
+@@ -13,6 +16,7 @@
+ 
+ import java.time.LocalDate;
+ import java.util.ArrayList;
++import java.util.EnumMap;
+ import java.util.List;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
+@@ -27,7 +31,7 @@
+     @Mock
+     private static ITrabajos trabajos;
+     @InjectMocks
+-    private Modelo modelo = FabricaModelo.CASCADA.crear(FabricaFuenteDatos.MEMORIA);
++    private Modelo modelo = FabricaModelo.CASCADA.crear(FabricaFuenteDatos.FICHEROS);
+ 
+     private static Cliente cliente;
+     private static Vehiculo vehiculo;
+@@ -249,7 +253,7 @@
+         when(trabajos.get(cliente)).thenReturn(new ArrayList<>(List.of(revision)));
+         List<Trabajo> trabajosCliente = modelo.getTrabajos(cliente);
+         verify(trabajos).get(cliente);
+-        assertNotSame(revision,trabajosCliente.get(0));
++        assertNotSame(revision, trabajosCliente.get(0));
+     }
+ 
+     @Test
+@@ -257,7 +261,14 @@
+         when(trabajos.get(vehiculo)).thenReturn(new ArrayList<>(List.of(revision)));
+         List<Trabajo> trabajosVehiculo = modelo.getTrabajos(vehiculo);
+         verify(trabajos).get(vehiculo);
+-        assertNotSame(revision,trabajosVehiculo.get(0));
++        assertNotSame(revision, trabajosVehiculo.get(0));
+     }
+ 
++    @Test
++    void getEstadisticasMensualesLlamaTrabajosGetEstadisticasMensuales() {
++        when(trabajos.getEstadisticasMensuales(LocalDate.now())).thenReturn(new EnumMap<>(TipoTrabajo.class));
++        modelo.getEstadisticasMensuales(LocalDate.now());
++        verify(trabajos).getEstadisticasMensuales(LocalDate.now());
++    }
++
+ }
+\ No newline at end of file
