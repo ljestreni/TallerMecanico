@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b0e04e-6981-41d9-b2bd-c9ae382a0816" name="Changes" comment="Actualizo">
+    <list default="true" id="f8b0e04e-6981-41d9-b2bd-c9ae382a0816" name="Changes" comment="Corrección de dependencia en diagrama de clases.">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/controlador/Controlador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,28 +54,30 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Exception" />
         <option value="Enum" />
         <option value="Class" />
-        <option value="Interface" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="refactorizacion_herencia" />
+        <entry key="$PROJECT_DIR$" value="sprint_inicial" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {}
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JRJimenezReyes&quot;
+  }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/jcazorlap/TallerMecanico&quot;,
-    &quot;accountId&quot;: &quot;aeb30e70-6153-4075-b846-250c26f9ba67&quot;
+    &quot;url&quot;: &quot;https://github.com/JRJimenezReyes/TallerMecanico.git&quot;,
+    &quot;accountId&quot;: &quot;7afb4187-7209-404d-b356-a4a604097a01&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -103,15 +111,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.ToggleCodyToolWindowAfterMigration": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "ficheros",
-    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ByLomBo/Desktop/1DAW/PROGRAMACIÓN/TallerMecanico/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "/home/pepino/Desarrollos/java/IntelliJ/Copias-TallerMecanico/TallerMecanico",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -119,24 +125,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico\modelo\negocio\memoria" />
       <recent name="$PROJECT_DIR$/src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio" />
       <recent name="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico" />
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico\modelo\negocio" />
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico\modelo\negocio\memoria" />
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico\modelo\negocio\cascada" />
-      <recent name="C:\Users\ByLomBo\Desktop\1DAW\PROGRAMACIÓN\TallerMecanico\src\main\java\org\iesalandalus\programacion\tallermecanico\vista" />
-    </key>
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="org.iesalandalus.programacion.tallermecanico.controlador" />
-      <recent name="org.iesalandalus.programacion.tallermecanico.modelo.negocio" />
-      <recent name="org.iesalandalus.programacion.tallermecanico.modelo.dominio" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="org.iesalandalus.programacion.tallermecanico.modelo" />
@@ -230,17 +223,17 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.Tests in 'org.iesalandalus.programacion.tallermecanico.modelo'" />
-      <item itemvalue="JUnit.ModeloTest" />
-      <item itemvalue="JUnit.RevisionTest" />
       <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanicoResuelto.test" />
+      <item itemvalue="JUnit.RevisionTest" />
+      <item itemvalue="JUnit.ModeloTest" />
       <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanico.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanico.test" />
-        <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanicoResuelto.test" />
-        <item itemvalue="JUnit.RevisionTest" />
         <item itemvalue="JUnit.ModeloTest" />
+        <item itemvalue="JUnit.RevisionTest" />
+        <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanicoResuelto.test" />
         <item itemvalue="Gradle.Tests in 'org.iesalandalus.programacion.tallermecanico.modelo'" />
       </list>
     </recent_temporary>
@@ -270,93 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739183845414</updated>
     </task>
-    <task id="LOCAL-00003" summary="Actualizado">
-      <option name="closed" value="true" />
-      <created>1742464809293</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1742464809293</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Añado Mecanico y Revision.">
-      <option name="closed" value="true" />
-      <created>1742818883185</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1742818883185</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1742819370616</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1742819370616</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1742821147131</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1742821147131</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1743070032091</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1743070032091</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1743075926869</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1743075926869</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1743154693769</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1743154693769</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Actualizo">
-      <option name="closed" value="true" />
-      <created>1743418287280</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1743418287280</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="3" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Commit inicial con el enunciado, las dependencias y los tests." />
-    <MESSAGE value="Actualizado" />
-    <MESSAGE value="Añado Mecanico y Revision." />
-    <MESSAGE value="Actualizo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit inicial con el enunciado, las dependencias y los tests." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TallerMecanico$RevisionTest.ic" NAME="RevisionTest Coverage Results" MODIFIED="1706862963586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
