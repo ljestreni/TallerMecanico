@@ -4,9 +4,7 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ModeloCascada implements Modelo {
 
@@ -45,6 +43,30 @@ public class ModeloCascada implements Modelo {
         Objects.requireNonNull(vehiculo,"El vehiculo no puede ser nulo.");
         vehiculos.insertar(vehiculo);
     }
+
+
+    public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
+
+        Map<TipoTrabajo, Integer> estadisticas = inicializarEstadisticas();
+
+        for (Trabajo trabajo : coleccionDeTrabajos) {
+            if (trabajo.getFechaInicio().getYear() == mes.getYear() && trabajo.getFechaInicio().getMonth() == mes.getMonth()) {
+                TipoTrabajo tipoTrabajo = TipoTrabajo.get(trabajo);
+                estadisticas.put(tipoTrabajo, estadisticas.get(tipoTrabajo) + 1);
+            }
+        }
+        return estadisticas;
+    }
+
+
+    private Map<TipoTrabajo, Integer> inicializarEstadisticas() {
+        Map<TipoTrabajo, Integer> estadisticas = new HashMap<>();
+        for (TipoTrabajo tipo : TipoTrabajo.values()) {
+            estadisticas.put(tipo, 0);
+        }
+        return estadisticas;
+    }
+
 
     @Override
     public void insertar(Trabajo trabajo) throws TallerMecanicoExcepcion{

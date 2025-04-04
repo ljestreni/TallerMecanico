@@ -5,10 +5,7 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Trabajos implements ITrabajos {
     List<Trabajo> coleccionDeTrabajos = new ArrayList<>();
@@ -54,6 +51,26 @@ public class Trabajos implements ITrabajos {
 
         return coleccionDeTrabajos.get(index);
     }
+
+    @Override
+    public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
+        Map<TipoTrabajo, Integer> estadisticas = inicializarEstadisticas();
+        for (Trabajo trabajo : coleccionDeTrabajos) {
+            if (trabajo.getFechaInicio().getYear() == mes.getYear() && trabajo.getFechaInicio().getMonth() == mes.getMonth()) {
+                TipoTrabajo tipoTrabajo = TipoTrabajo.get(trabajo);
+                estadisticas.put(tipoTrabajo, estadisticas.get(tipoTrabajo) + 1);
+            }
+        }
+        return estadisticas;
+    }
+
+    public Map<TipoTrabajo, Integer> inicializarEstadisticas() {
+        Map<TipoTrabajo, Integer> estadisticas = new HashMap<>();
+        estadisticas.put(TipoTrabajo.MECANICO, 0);
+        estadisticas.put(TipoTrabajo.REVISION, 0);
+        return estadisticas;
+    }
+
 
     @Override
     public void insertar(Trabajo trabajo) throws TallerMecanicoExcepcion {
