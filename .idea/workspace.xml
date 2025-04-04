@@ -5,44 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b0e04e-6981-41d9-b2bd-c9ae382a0816" name="Changes" comment="Actualizo">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_04_2025_8_55_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_04_2025_8_55_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_04_2025_8_55__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/controlador/IControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/FabricaModelo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloCascada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/FabricaVista.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/eventos/Evento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/eventos/GestorEventos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/eventos/ReceptorEventos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/texto/Consola.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/texto/VistaTexto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/Modelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/TallerMecanicoExcepcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/TallerMecanicoExcepcion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Mecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Mecanico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Revision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Revision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Trabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Trabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/Vehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/FabricaFuenteDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/FabricaFuenteDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/FabricaModelo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IFuenteDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IFuenteDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/ITrabajos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/ITrabajos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IVehiculos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/IVehiculos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/Modelo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/cascada/ModeloCascada.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Clientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/FuenteDatosMemoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/FuenteDatosMemoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Trabajos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Trabajos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Vehiculos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria/Vehiculos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/Consola.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/Opcion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/tallermecanico/vista/Vista.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +58,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint_inicial" />
+        <entry key="$PROJECT_DIR$" value="refactorizacion_herencia" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -144,7 +107,7 @@
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "refactorizacion__herencia",
+    "git-widget-placeholder": "ficheros",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ByLomBo/Desktop/1DAW/PROGRAMACIÓN/TallerMecanico/src/main/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/memoria",
@@ -274,11 +237,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'org.iesalandalus.programacion.tallermecanico.modelo'" />
         <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanico.test" />
-        <item itemvalue="JUnit.ModeloTest" />
-        <item itemvalue="JUnit.RevisionTest" />
         <item itemvalue="JUnit.org.iesalandalus.programacion.tallermecanico.modelo in TallerMecanicoResuelto.test" />
+        <item itemvalue="JUnit.RevisionTest" />
+        <item itemvalue="JUnit.ModeloTest" />
+        <item itemvalue="Gradle.Tests in 'org.iesalandalus.programacion.tallermecanico.modelo'" />
       </list>
     </recent_temporary>
   </component>
