@@ -1,6 +1,9 @@
 package org.iesalandalus.programacion.tallermecanico.modelo;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.Map;
 public interface Modelo {
     void comenzar();
 
-    void terminar() throws TallerMecanicoExcepcion;
+    void terminar();
 
     void insertar(Cliente cliente) throws TallerMecanicoExcepcion;
 
@@ -47,5 +50,5 @@ public interface Modelo {
 
     List<Trabajo> getTrabajos(Vehiculo vehiculo);
 
-    Map<TipoTrabajo,Integer> getEstadisticasMensuales(LocalDate mes);
+    Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes);
 }

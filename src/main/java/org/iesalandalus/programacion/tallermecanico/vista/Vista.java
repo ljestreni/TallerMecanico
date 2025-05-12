@@ -1,7 +1,5 @@
 package org.iesalandalus.programacion.tallermecanico.vista;
 
-import org.iesalandalus.programacion.tallermecanico.controlador.Controlador;
-import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
@@ -11,22 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 public interface Vista {
-    int leerHoras();
-
-    float leerPrecioMaterial();
-
-    LocalDate leerFechaCierre();
 
     GestorEventos getGestorEventos();
 
-    void comenzar() throws TallerMecanicoExcepcion;
+    void comenzar();
 
     void terminar();
 
-
     Cliente leerCliente();
 
-    Cliente leerClienteDNI();
+    Cliente leerClienteDni();
 
     String leerNuevoNombre();
 
@@ -36,27 +28,34 @@ public interface Vista {
 
     Vehiculo leerVehiculoMatricula();
 
-    Revision leerRevision();
+    Trabajo leerRevision();
 
-    Mecanico leerMecanico();
+    Trabajo leerMecanico();
 
     Trabajo leerTrabajoVehiculo();
 
+    int leerHoras();
+
+    float leerPrecioMaterial();
+
+    LocalDate leerFechaCierre();
+
+    LocalDate leerMes();
+
     void notificarResultado(Evento evento, String texto, boolean exito);
+
+    void mostrarCliente(Cliente cliente);
+
+    void mostrarVehiculo(Vehiculo vehiculo);
+
+    void mostrarTrabajo(Trabajo trabajo);
 
     void mostrarClientes(List<Cliente> clientes);
 
     void mostrarVehiculos(List<Vehiculo> vehiculos);
 
-    void mostrarTrabajos(List<Trabajo> trabajos);
+    void mostrarTrabajos(List<Trabajo> trabajoes);
 
-    void mostrarCliente(Cliente cliente);
+    void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas);
 
-    void mostrarTrabajo(Trabajo trabajo);
-
-    void mostrarVehiculo(Vehiculo vehiculo);
-
-    LocalDate leerMes();
-
-    void mostrarEstadisticas(Map<TipoTrabajo,Integer> estadistica);
 }
