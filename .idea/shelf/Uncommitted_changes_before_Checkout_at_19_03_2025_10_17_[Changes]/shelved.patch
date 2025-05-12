@@ -1,0 +1,18 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Tarea: Taller mecánico\r\n## Profesor: José Ramón Jiménez Reyes\r\n## Alumno: Álvaro Martínez Flores\r\n\r\nEn este repositorio iremos subiendo las diferentes versiones o sprint de nuestro proyecto.\r\nTrabajaremos por ramas que luego las integraremos en esta principal y las iremos etiquetando.\r\n\r\n- [sprint inicial](../../tree/sprint_inicial): Primera versión con los requerimientos iniciales para nuestro taller mecánico.\r\n- [refactorizacion_herencia](../../tree/refactorizacion_herencia): Segunda versión en la que refactorizamos la anterior aplicando patrones de diseño y mejorando el diseño en general. También se añaden nuevos requerimientos.
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 8a88b9f4bfb97bccdaac5f21e140db871508786b)
++++ b/README.md	(date 1742375472363)
+@@ -6,4 +6,4 @@
+ Trabajaremos por ramas que luego las integraremos en esta principal y las iremos etiquetando.
+ 
+ - [sprint inicial](../../tree/sprint_inicial): Primera versión con los requerimientos iniciales para nuestro taller mecánico.
+-- [refactorizacion_herencia](../../tree/refactorizacion_herencia): Segunda versión en la que refactorizamos la anterior aplicando patrones de diseño y mejorando el diseño en general. También se añaden nuevos requerimientos.
+\ No newline at end of file
++- [refactorizacion_herencia](../../tree/refactorizacion_he 2rencia): Segunda versión en la que refactorizamos la anterior aplicando patrones de diseño y mejorando el diseño en general. También se añaden nuevos requerimientos.
+\ No newline at end of file
